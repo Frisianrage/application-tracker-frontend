@@ -26,7 +26,7 @@ const NavBar = () => {
                                     <LinkContainer to='/admin/employerlist'>
                                         <NavDropdown.Item>Employers</NavDropdown.Item>
                                     </LinkContainer>
-                                    <LinkContainer to='/admin/application'>
+                                    <LinkContainer to='/admin/applicationlist'>
                                         <NavDropdown.Item>Applications</NavDropdown.Item>
                                     </LinkContainer>
                                 </NavDropdown> 
