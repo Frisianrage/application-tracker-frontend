@@ -37,6 +37,11 @@ const NavBar = () => {
                                 </NavDropdown> 
                             </Nav.Item>)}
                             <Nav.Item>
+                                <LinkContainer to='/dashboard'>
+                                    <Nav.Link><i className='fas fa-user'></i>Dashboard</Nav.Link>
+                                </LinkContainer>
+                            </Nav.Item>
+                            <Nav.Item>
                                 <LinkContainer to='/profile'>
                                     <Nav.Link><i className='fas fa-user'></i>Profile</Nav.Link>
                                 </LinkContainer>
