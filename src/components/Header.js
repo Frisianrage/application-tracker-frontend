@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { AuthContext } from '../context/auth'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 
 
 const NavBar = () => {
-    const userInfo = {isAdmin: true}
+    const {user, logout} = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logout()
+    }
 
     return (
         <header>
@@ -16,9 +21,9 @@ const NavBar = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         
-                        {userInfo ? (
+                        {user ? (
                             <Nav>
-                            {userInfo.isAdmin && (<Nav.Item>
+                            {user.isAdmin && (<Nav.Item>
                                 <NavDropdown title='Admin' id='adminmenu'>
                                     <LinkContainer to='/admin/userlist'>
                                         <NavDropdown.Item>Users</NavDropdown.Item>
@@ -47,7 +52,7 @@ const NavBar = () => {
                                 </LinkContainer>
                             </Nav.Item>
                             <Nav.Item>
-                                <LinkContainer to='/logout'>
+                                <LinkContainer to='/logout' onClick={handleLogout}>
                                     <Nav.Link><i className='fas fa-user'></i>Logout</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>

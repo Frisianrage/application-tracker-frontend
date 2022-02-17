@@ -1,8 +1,20 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { AuthContext } from '../context/auth'
 
 function HomeScreen() {
+
+  const {user} = useContext(AuthContext)
+
+  if(user){
+    console.log(user)
+  }
+
   return (
-        <h1>Home</h1>
+    <>
+      {user ? (<h1> Hello User</h1>) : (<h1>Hello Stranger!!</h1>)} 
+    </>
+    
+        
   );
 }
 
