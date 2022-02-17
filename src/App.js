@@ -22,7 +22,7 @@ function App() {
               <Route exact path='/' element={<HomeScreen />} />
               <Route exact path='/login' element={<LoginScreen />} />
               <Route exact path='/logout' element={<HomeScreen />} />
-              <Route exact path='/register' element={<RegisterScreen />} />
+              <Route exact path='/signin' element={<RegisterScreen />} />
               <Route exact path='/dashboard' element={<DashboardScreen />} />
               <Route exact path='/profile' element={<ProfileScreen />} />
               <Route exact path='/employers' element={<EmployerScreen />} />

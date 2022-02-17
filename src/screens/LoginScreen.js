@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import { AuthContext } from '../context/auth'
 import {useNavigate} from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
-import {Form, Button, Row, Container, Modal} from 'react-bootstrap'
+import {Form, Button, Container, Modal} from 'react-bootstrap'
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
@@ -25,7 +25,7 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if(user){
-            history('/')
+            history('/dashboard')
         }
     }, [user,history])
 
@@ -53,16 +53,14 @@ const LoginScreen = () => {
                             <Form.Control type='password' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
                         </Form.Group>
                         <Container className="justify-content-center pt-3">
-                      <Button type='submit' variant='primary' className="mx-2">
-                            Login
-                        </Button>
-                        <Button onClick={onHide} variant='primary'>
-                            Cancel
-                        </Button>  
-                    </Container>
+                            <Button type='submit' variant='primary' className="mx-2">
+                                Login
+                            </Button>
+                            <Button onClick={onHide} variant='primary'>
+                                Cancel
+                            </Button>  
+                        </Container>
                     </Form> 
-                    
-                   
                 </FormContainer>
             </Modal.Body>
             <Modal.Footer className="justify-content-center">

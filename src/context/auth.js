@@ -19,7 +19,8 @@ if(localStorage.getItem('jwtToken')){
 const AuthContext = createContext({
     user: null,
     login: (email, password) => {},
-    logout: () => {}
+    logout: () => {},
+    register: (email, password) => {}
 })
 
 const AuthReducer = (state, action) => {
@@ -33,6 +34,11 @@ const AuthReducer = (state, action) => {
             return {
                 ...state,
                 user: null
+            }
+        case 'REGISTER':
+            return {
+                ...state,
+                user: action.payload
             }
         default: return state
     }
@@ -50,7 +56,6 @@ const AuthProvider = (props) => {
 
         const {data} = await axios.post('/api/users/login', {email, password}, config)
         localStorage.setItem('jwtToken', data.token)
-        console.log(data)
         dispatch({
             type: 'LOGIN',
             payload: data
@@ -64,8 +69,23 @@ const AuthProvider = (props) => {
         })
     }
 
+    const register = async (email, password) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const {data} = await axios.post('/api/users', {email, password}, config)
+        localStorage.setItem('jwtToken', data.token)
+        dispatch({
+            type: 'REGISTER',
+            payload: data
+        })
+    }
+
     return (
-        <AuthContext.Provider value={{user: state.user, login, logout }} {...props} />
+        <AuthContext.Provider value={{user: state.user, login, logout, register }} {...props} />
     )
 }
 
