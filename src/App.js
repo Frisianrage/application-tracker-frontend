@@ -9,6 +9,7 @@ import ApplicationScreen from './screens/ApplicationScreen'
 import UserListScreen from './screens/UserListScreen'
 import EmployerListScreen from './screens/EmployerListScreen'
 import ApplicationListScreen from './screens/ApplicationListScreen'
+import ApplicationDetailsScreen from './screens/ApplicationDetailsScreen'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
 import RegisterScreen from './screens/RegisterScreen'
@@ -30,6 +31,7 @@ function App() {
               <Route exact path='/admin/userlist' element={<UserListScreen />} />
               <Route exact path='/admin/employerlist' element={<EmployerListScreen />} />
               <Route exact path='/admin/applicationlist' element={<ApplicationListScreen />} />
+              <Route exact path='/applications/:id' element={<ApplicationDetailsScreen />} />
         </Routes>
       </Router>
     </AuthProvider>
