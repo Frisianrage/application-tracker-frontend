@@ -2,9 +2,12 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Container, Table, Button, Row, Col} from 'react-bootstrap'
+import NewApplication from '../components/NewApplication'
 
 const ApplicationScreen = () => {
   const [userData, setUserData] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  
   const token = localStorage.getItem('jwtToken')
     
   const config = {
@@ -26,10 +29,6 @@ const ApplicationScreen = () => {
         getApplications()
     }, [])
 
-    const createProductHandler = () => {
-        console.log('create')    
-    }
-
     const deletHandler = (id) => {
         if(window.confirm('Are you sure you want to delete this Product?')){
             console.log('delete')
@@ -37,13 +36,15 @@ const ApplicationScreen = () => {
     }
 
     return (
-        <Container>
+      <>
+      <NewApplication showModal={showModal} setShowModal={setShowModal} />
+      <Container>
             <Row className="align-items-center">
                 <Col>
                     <h2><u>Applications</u></h2>
                 </Col>
                 <Col className='text-right justify-content-end'>
-                    <Button className='my-3'  onClick={createProductHandler}>
+                    <Button className='my-3' onClick={() => {setShowModal(true)}}>
                         <i className='fas fa-plus' /> New Applications
                     </Button>
                 </Col>
@@ -95,6 +96,8 @@ const ApplicationScreen = () => {
                 </>
              
         </Container>
+      </>
+        
     )
 }
 
