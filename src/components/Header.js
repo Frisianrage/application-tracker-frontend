@@ -38,27 +38,27 @@ const NavBar = () => {
                             </Nav.Item>)}
                             <Nav.Item>
                                 <LinkContainer to='/dashboard'>
-                                    <Nav.Link><i className='fas fa-user'></i>Dashboard</Nav.Link>
+                                    <Nav.Link>Dashboard</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                             <Nav.Item>
                                 <LinkContainer to='/profile'>
-                                    <Nav.Link><i className='fas fa-user'></i>Profile</Nav.Link>
+                                    <Nav.Link>Profile</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                             <Nav.Item>
                                 <LinkContainer to='/applications'>
-                                    <Nav.Link><i className='fas fa-user'></i>Applications</Nav.Link>
+                                    <Nav.Link>Applications</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                             <Nav.Item>
                                 <LinkContainer to='/employers'>
-                                    <Nav.Link><i className='fas fa-user'></i>Employers</Nav.Link>
+                                    <Nav.Link>Employers</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                             <Nav.Item>
                                 <LinkContainer to='/logout' onClick={handleLogout}>
-                                    <Nav.Link><i className='fas fa-user'></i>Logout</Nav.Link>
+                                    <Nav.Link>Logout</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                         </Nav>
@@ -66,12 +66,12 @@ const NavBar = () => {
                             <Nav>
                             <Nav.Item>
                                 <LinkContainer to='/login'>
-                                    <Nav.Link><i className='fas fa-user'></i>Login</Nav.Link>
+                                    <Nav.Link>Login</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                             <Nav.Item>
                                 <LinkContainer to='/signin'>
-                                    <Nav.Link><i className='fas fa-user'></i>Sign In</Nav.Link>
+                                    <Nav.Link>Sign In</Nav.Link>
                                 </LinkContainer>
                             </Nav.Item>
                         </Nav>

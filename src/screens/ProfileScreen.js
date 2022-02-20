@@ -64,9 +64,15 @@ const ProfileScreen = () => {
     }
 
     const uploadResume = async (e) => {
-      console.log(e)
       setResume(e)
       await axios.put('/api/users/profile/resume', e, config)
+      getUser()
+    }
+
+    const deleteResume = async() => {
+      setResume({})
+      await axios.put('/api/users/profile/resume', {content: "", type: "", date: "", name: ""}, config)
+      getUser()
     }
 
     return (
@@ -74,13 +80,20 @@ const ProfileScreen = () => {
         <Row>
           <Form onSubmit={submitHandler}>
             <Row>
-              <h2 className="p-3" style={{border: 'solid 3px black', width: '50rem'}}><u>User Profile</u></h2>
-              <Form.Group as={Col} style={{border: 'solid 3px green'}} className="p-3" controlId='resume'>
+              <h2 className="p-3" style={{ width: '50%'}}><u>User Profile</u></h2>
+              <Form.Group as={Col} className="p-3" controlId='resume' style={{ width: '50%'}}>
                 <Form.Label >Resume</Form.Label><br/>
                   {resume && resume.content? (
-                  <a rel="noreferrer" href={resume.content} title={resume.name} target="_blank">{resume.name}</a>
+                    <div>
+                      <div style={{width: "50%", display: "inline-block"}}>
+                        <a rel="noreferrer" href={resume.content} title={resume.name} target="_blank">{resume.name}</a>
+                      </div>
+                      <div onClick={deleteResume} className="pt-3" style={{fontSize: "18px", width: "50%", display: "inline-block"}}>
+                        <i className="fas fa-trash-alt"></i>
+                      </div>
+                    </div >
                   ) : (
-                  <FileBase type="file"  multiple={false} onDone={(e) => uploadResume(e)} />
+                      <FileBase type="file"  multiple={false} onDone={(e) => uploadResume(e)} />
                   )}  
               </Form.Group>
             </Row>
