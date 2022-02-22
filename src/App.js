@@ -27,6 +27,7 @@ function App() {
               <Route exact path='/signin' element={<RegisterScreen />} />
               <Route exact path='/dashboard' element={<DashboardScreen />} />
               <Route exact path='/profile' element={<ProfileScreen />} />
+              <Route exact path='/users/:id' element={<ProfileScreen />} />
               <Route exact path='/employers' element={<EmployerScreen />} />
               <Route exact path='/employers/profile/:id' element={<EmployerDetailsScreen />} />
               <Route exact path='/applications' element={<ApplicationScreen />} />

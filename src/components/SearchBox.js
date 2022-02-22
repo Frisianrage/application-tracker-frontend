@@ -18,7 +18,6 @@ const SearchBox = ({setEmployerData}) => {
         e.preventDefault()
         if(keyword.trim()) {
             const {data} = await axios.get(`/api/employers/search/${keyword}`, config)
-            console.log(data)
             setEmployerData(data.employers)
         } else {
             console.log("error")
@@ -26,9 +25,9 @@ const SearchBox = ({setEmployerData}) => {
     }
 
     return (
-        <Form>
+        <Form >
             <Form.Control type='text' name='q' onChange={(e) => setKeyword(e.target.value)} placeholder='Search Employer...' className='mr-sm-2 ml-sm-5'></Form.Control>
-            <Button type='submit' variant='primary' className='p-2' onClick={clickHandler}>
+            <Button type='submit' variant='primary' className='m-4' onClick={clickHandler}>
                 Search
             </Button>
         </Form>

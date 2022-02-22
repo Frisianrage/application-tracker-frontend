@@ -40,8 +40,7 @@ const ApplicationsListScreen = () => {
 
     
   return (
-    <>
-      <Container>
+      <Container fluid className="px-5">
         <Row className="align-items-center">
           <Col>
               <h2 className="p-3" style={{ width: '50%'}}><u>Applications</u></h2>
@@ -93,7 +92,6 @@ const ApplicationsListScreen = () => {
           </Table>
         </>
       </Container>
-    </>   
   )
 }
 

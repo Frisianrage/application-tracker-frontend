@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom';
 import FileBase from 'react-file-base64';
 import {Container, Button, Form, Row, Col} from 'react-bootstrap'
 
@@ -19,6 +20,8 @@ const ProfileScreen = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const params = useParams()
+
     const token = localStorage.getItem('jwtToken')
     
     const config = {
@@ -29,21 +32,27 @@ const ProfileScreen = () => {
     }
 
     const getUser = async () => {
-      const {data} = await axios.get('/api/users/profile', config)
-     
+      let data
+
+      if(params && params.id){
+        data = await axios.get(`/api/users/${params.id}`, config)
+      } else {
+        data = await axios.get('/api/users/profile', config)
+      }
+      
       if(data) {
-        setFirstName(data.firstname)
-        setLastName(data.lastname)
-        setEmail(data.email)
-        setAddress(data.address.address)
-        setAddressTwo(data.address.addressTwo)
-        setZipCode(data.address.zip_code)
-        setCity(data.address.city)
-        setState(data.address.state)
-        setCountry(data.address.country)
-        setMobile(data.mobile)
-        setTelephone(data.telephone)
-        setResume(data.resume)
+        setFirstName(data.data.firstname)
+        setLastName(data.data.lastname)
+        setEmail(data.data.email)
+        setAddress(data.data.location.address)
+        setAddressTwo(data.data.location.addressTwo)
+        setZipCode(data.data.location.zip_code)
+        setCity(data.data.location.city)
+        setState(data.data.location.state)
+        setCountry(data.data.location.country)
+        setMobile(data.data.mobile)
+        setTelephone(data.data.telephone)
+        setResume(data.data.resume)
       } 
     }
 

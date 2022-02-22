@@ -55,7 +55,6 @@ const ApplicationScreen = () => {
               </Button>
           </Col>
         </Row>
-        <>
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
@@ -95,7 +94,6 @@ const ApplicationScreen = () => {
               )}
             </tbody>
           </Table>
-        </>
       </Container>
     </>   
   )

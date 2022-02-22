@@ -56,7 +56,6 @@ const EmployerScreen = () => {
               </Button>
           </Col>
         </Row>
-        <>
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
@@ -98,7 +97,6 @@ const EmployerScreen = () => {
               )}
             </tbody>
           </Table>
-        </>
       </Container>
     </>   
   )
