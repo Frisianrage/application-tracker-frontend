@@ -1,9 +1,98 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
-function UserListScreen() {
+const UserListScreen = () => {
+  const [userData, setUserData] = useState('')
+  const [refresh, setRefresh] = useState('false')
+
+  const token = localStorage.getItem('jwtToken')
+    
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+    }
+  }
+
+  const getUsers = async () => {
+    const {data} = await axios.get('/api/users/admin/userslist', config)
+     
+    if(data) {
+      setUserData(data)
+    } 
+  }
+
+  const deletHandler = async (id) => {
+    if(window.confirm('Are you sure you want to delete this Application?')){
+      const deleteApp = await axios.delete(`/api/users/${id}`, config)
+      if(deleteApp){
+        setRefresh(true)
+      }
+    }
+  }
+
+  useEffect(() => {
+      getUsers()
+      setRefresh(false)
+  }, [refresh])
+
+    
   return (
-        <h1>Admin user list</h1>
-  );
+    <>
+      <Container>
+        <Row className="align-items-center">
+          <Col>
+              <h2 className="p-3" style={{ width: '50%'}}><u>USERS</u></h2>
+          </Col>
+        </Row>
+        <>
+          <Table striped bordered hover responsive className='table-sm'>
+            <thead>
+              <tr>
+                <th>USER ID</th>
+                <th>FIRSTNAME</th>
+                <th>LASTNAME</th>
+                <th>CITY / STATE</th>
+                <th>MEMBER SINCE</th>
+                <th>APPLICATIONS</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {userData ? (
+                userData.map(user => (
+                  <tr key={user._id}>
+                      <td>{user._id}</td>
+                      <td>{user.firstname}</td>
+                      <td>{user.lastname}</td>
+                      <td>{user.location.city}/{user.location.state}</td>
+                      <td>{user.createdAt}</td>
+                      <td>{user.applications.length}</td>
+                      <td>
+                        <LinkContainer to={`/users/${user._id}`}>
+                          <Button variant='light' className='btn-sm'>
+                            <i className='fas fa-edit' />
+                          </Button>
+                        </LinkContainer>
+                        <Button variant='danger' className='btn-sm' onClick={() => deletHandler(user._id)}>
+                          <i className='fas fa-trash' />
+                        </Button>
+                      </td>
+                  </tr>
+                ))
+                ) : (
+                <tr>
+                  <td>NO USERS FOUND!</td>
+                </tr> 
+              )}
+            </tbody>
+          </Table>
+        </>
+      </Container>
+    </>   
+  )
 }
 
 export default UserListScreen
