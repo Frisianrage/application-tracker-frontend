@@ -10,6 +10,7 @@ import UserListScreen from './screens/UserListScreen'
 import EmployerListScreen from './screens/EmployerListScreen'
 import ApplicationListScreen from './screens/ApplicationListScreen'
 import ApplicationDetailsScreen from './screens/ApplicationDetailsScreen'
+import EmployerDetailsScreen from './screens/EmployerDetailsScreen'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
 import RegisterScreen from './screens/RegisterScreen'
@@ -27,6 +28,7 @@ function App() {
               <Route exact path='/dashboard' element={<DashboardScreen />} />
               <Route exact path='/profile' element={<ProfileScreen />} />
               <Route exact path='/employers' element={<EmployerScreen />} />
+              <Route exact path='/employers/profile/:id' element={<EmployerDetailsScreen />} />
               <Route exact path='/applications' element={<ApplicationScreen />} />
               <Route exact path='/admin/userlist' element={<UserListScreen />} />
               <Route exact path='/admin/employerlist' element={<EmployerListScreen />} />

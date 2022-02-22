@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react'
-import { AuthContext } from '../context/auth'
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import FormContainer from './FormContainer'
 import FindEmployer from './FindEmployer'
-import {Form, Button, Container, Modal, Row, Col} from 'react-bootstrap'
+import { Form, Button, Container, Modal, Row, Col } from 'react-bootstrap'
 
 const NewApplication = ({showModal, setShowModal}) => {
     const [jobtitle, setJobtitle] = useState('')
@@ -21,13 +21,42 @@ const NewApplication = ({showModal, setShowModal}) => {
     const [source, setSource] = useState('')
     const [findEmployerModal, setFindEmployerModal] = useState(false)
     
-    //const {user} = useContext(AuthContext)
     const history = useNavigate()
+    const token = localStorage.getItem('jwtToken')
+    
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+      }
+    }
 
-    //console.log(user)
-    console.log(employer)
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
+        const newApp = await axios.post('/api/applications', {
+           jobtitle, 
+            jobdescription, 
+            salary, 
+            remote, 
+            location: { 
+                city, 
+                state, 
+                country
+            }, 
+            company: {
+                employer: employer.id,
+                contactperson: {
+                    name,
+                    email,
+                    phone
+                }
+            },
+            status, 
+            source
+        }, config) 
+        if(newApp) {
+            onHide()
+        }
     }
 
     const onHide = () => {
@@ -36,7 +65,6 @@ const NewApplication = ({showModal, setShowModal}) => {
     }
 
     return (
-        
         <Modal show={showModal} centered id="mainModal">
             <FindEmployer setFindEmployerModal={setFindEmployerModal} findEmployerModal={findEmployerModal} setEmployer={setEmployer} />
             <Modal.Header>
@@ -147,7 +175,6 @@ const NewApplication = ({showModal, setShowModal}) => {
         </Modal>
     )
 }
-
 
 
 export default NewApplication

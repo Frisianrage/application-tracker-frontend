@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {Form, Button} from 'react-bootstrap'
-//import {useNavigate} from 'react-router-dom'
 
 const SearchBox = ({setEmployerData}) => {
     const [keyword, setKeyword] = useState('')
-    //const history = useNavigate()
 
     const token = localStorage.getItem('jwtToken')
 
@@ -19,8 +17,8 @@ const SearchBox = ({setEmployerData}) => {
     const clickHandler = async (e) => {
         e.preventDefault()
         if(keyword.trim()) {
-            const {data} = await axios.get(`/api/employers/${keyword}`, config)
-         
+            const {data} = await axios.get(`/api/employers/search/${keyword}`, config)
+            console.log(data)
             setEmployerData(data.employers)
         } else {
             console.log("error")

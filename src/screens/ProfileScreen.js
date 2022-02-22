@@ -11,6 +11,7 @@ const ProfileScreen = () => {
     const [addressTwo, setAddressTwo] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [city, setCity] = useState('')
+    const [state, setState] = useState('')
     const [country, setCountry] = useState('')
     const [mobile, setMobile] = useState('')
     const [telephone, setTelephone] = useState('')
@@ -29,7 +30,7 @@ const ProfileScreen = () => {
 
     const getUser = async () => {
       const {data} = await axios.get('/api/users/profile', config)
-      console.log(data)
+     
       if(data) {
         setFirstName(data.firstname)
         setLastName(data.lastname)
@@ -38,6 +39,7 @@ const ProfileScreen = () => {
         setAddressTwo(data.address.addressTwo)
         setZipCode(data.address.zip_code)
         setCity(data.address.city)
+        setState(data.address.state)
         setCountry(data.address.country)
         setMobile(data.mobile)
         setTelephone(data.telephone)
@@ -46,7 +48,7 @@ const ProfileScreen = () => {
     }
 
     const updateUser = async () => {
-      await axios.put('/api/users/profile', {firstName, lastName, address, addressTwo, city, zipCode, country, mobile, telephone, email}, config)
+      await axios.put('/api/users/profile', {firstName, lastName, address, addressTwo, city, zip_code: zipCode, state, country, mobile, telephone, email}, config)
     }
     
     useEffect(() => {
@@ -139,6 +141,10 @@ const ProfileScreen = () => {
                 <Form.Group as={Col} controlId='city'>
                     <Form.Label>City</Form.Label>
                     <Form.Control type='city' placeholder='Enter your city code' value={city} onChange={(e) => setCity(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group as={Col} controlId='state'>
+                    <Form.Label>State</Form.Label>
+                    <Form.Control type='state' placeholder='Enter your state code' value={state} onChange={(e) => setState(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} controlId='country'>
                     <Form.Label>Country</Form.Label>

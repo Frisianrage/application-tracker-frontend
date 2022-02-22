@@ -1,41 +1,30 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
-import {Container, Table, Button, Row, Col, Modal} from 'react-bootstrap'
+import React, { useState } from 'react'
+//import axios from 'axios'
+import { Container, Table, Button, Modal } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 
-const FindEmployer = ({findEmployerModal, setFindEmployerModal, setEmployer}) => {
+const FindEmployer = ({ findEmployerModal, setFindEmployerModal, setEmployer }) => {
   const [employerData, setEmployerData] = useState('')
   
-  const token = localStorage.getItem('jwtToken')
+  // const token = localStorage.getItem('jwtToken')
     
-  const config = {
+  /*const config = {
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` 
     }
-  }
+  }*/
 
-  const onHide = () => {
-    setFindEmployerModal(false)
-}
+    const onHide = () => {
+        setFindEmployerModal(false)
+    }
 
-const handleClick = (id, name) => {
-    setEmployer({id, name})
-    setFindEmployerModal(false)
-}
-/*
-  const getApplications = async () => {
-    const {data} = await axios.get('/api/applications/summary', config)
+    const handleClick = (id, name) => {
+        console.log(employerData)
+        setEmployer({id, name})
+        setFindEmployerModal(false)
+    }
 
-    if(data) {
-      setUserData(data)
-    } 
-  }
-
-    useEffect(() => {
-        getApplications()
-    }, [])
-*/
     return (
         <Modal show={findEmployerModal} centered id="mainModal">
         <Modal.Header>
