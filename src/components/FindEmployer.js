@@ -19,9 +19,9 @@ const FindEmployer = ({ findEmployerModal, setFindEmployerModal, setEmployer }) 
         setFindEmployerModal(false)
     }
 
-    const handleClick = (id, name) => {
+    const handleClick = (id, companyname) => {
         console.log(employerData)
-        setEmployer({id, name})
+        setEmployer({id, companyname})
         setFindEmployerModal(false)
     }
 
