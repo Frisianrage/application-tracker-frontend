@@ -37,7 +37,7 @@ function ApplicationDetailsScreen() {
         }
     }*/
   return (
-        <h2><u>Application Details</u> for {applicationData?.jobtitle} at {applicationData?.employer?.employer?.companyname}</h2>
+        <h2><u>Application Details</u> for {applicationData?.jobtitle} at {applicationData?.company?.employer?.companyname}</h2>
   );
 }
 
