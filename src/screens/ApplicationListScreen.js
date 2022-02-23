@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
@@ -52,6 +53,7 @@ const ApplicationsListScreen = () => {
               <tr>
                 <th>USER ID</th>
                 <th>USER</th>
+                <th>APPLICATION ID</th>
                 <th>COMPANY</th>
                 <th>JOBTITLE</th>
                 <th>LOCATION</th>
@@ -66,10 +68,11 @@ const ApplicationsListScreen = () => {
                   <tr key={application._id}>
                       <td>{application.applicant._id}</td>
                       <td>{application.applicant.firstname} {" "} {application.applicant.lastname}</td>
+                      <td>{application._id}</td>
                       <td>{application.company.employer.companyname}</td>
                       <td>{application.jobtitle}</td>
                       <td>{application.location.city}/{application.location.state}</td>
-                      <td>{application.createdAt}</td>
+                      <td>{moment(application.createdAt).format('MM/DD/YY')}</td>
                       <td>{application.status}</td>
                       <td>
                         <LinkContainer to={`/applications/${application._id}`}>

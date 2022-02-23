@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import NewEmployer from '../components/NewEmployer'
@@ -77,7 +78,7 @@ const EmployerScreen = () => {
                       <td>{employer.location.state}</td>
                       <td>{employer.location.country}</td>
                       <td>{employer.applications.length}</td>
-                      <td>{employer.createdAt}</td>
+                      <td>{moment(employer.createdAt).format('MM/DD/YY')}</td>
                       <td>
                         <LinkContainer to={`/employers/profile/${employer._id}`}>
                           <Button variant='light' className='btn-sm'>

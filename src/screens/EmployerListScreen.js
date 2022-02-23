@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
@@ -53,7 +54,7 @@ const EmployerListScreen = () => {
                 <th>COMPANY NAME</th>
                 <th>LOCATION</th>
                 <th>CREATED AT</th>
-                <th>CREATED BY</th>
+                <th>CREATED BY (USER ID)</th>
                 <th>APPLICATIONS</th>
                 <th></th>
               </tr>
@@ -65,7 +66,7 @@ const EmployerListScreen = () => {
                       <td>{employer._id}</td>
                       <td>{employer.companyname}</td>
                       <td>{employer.location.city}/{employer.location.state}</td>
-                      <td>{employer.createdAt}</td>
+                      <td>{moment(employer.createdAt).format('MM/DD/YY')}</td>
                       <td>{employer.user._id}</td>
                       <td>{employer.applications.length}</td>
                       <td>

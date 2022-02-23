@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
@@ -68,7 +69,7 @@ const UserListScreen = () => {
                       <td>{user.firstname}</td>
                       <td>{user.lastname}</td>
                       <td>{user.location.city}/{user.location.state}</td>
-                      <td>{user.createdAt}</td>
+                      <td>{moment(user.createdAt).format('MM/DD/YY')}</td>
                       <td>{user.applications.length}</td>
                       <td>
                         <LinkContainer to={`/users/${user._id}`}>
