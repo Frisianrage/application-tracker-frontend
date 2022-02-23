@@ -47,7 +47,7 @@ function LastEmployer() {
               </tr>
             </thead>
             <tbody>
-                {userData ? (
+                {userData && userData[0] ? (
                     <LinkContainer to={`/employers/profile/${userData[0]._id}`}>
                         <tr>
                             <td>{userData[0].companyname}</td>

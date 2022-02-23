@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Row, Col } from 'react-bootstrap'
 
 function LastApplication() {
-    const [userData, setUserData] = useState('')
+  const [userData, setUserData] = useState('')
 
   const token = localStorage.getItem('jwtToken')
     
@@ -46,7 +46,7 @@ function LastApplication() {
               </tr>
             </thead>
             <tbody>
-                {userData ? (
+                {userData && userData.applications[0] ? (
                     <LinkContainer to={`/applications/${userData.applications[0]._id}`}>
                         <tr>
                             <td>{userData.applications[0].jobtitle}</td>

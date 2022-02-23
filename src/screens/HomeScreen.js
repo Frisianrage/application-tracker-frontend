@@ -11,7 +11,7 @@ function HomeScreen() {
 
   return (
     <>
-      {user ? (<h1> Hello User</h1>) : (<h1>Hello Stranger!!</h1>)} 
+      {user ? (<h1> Hello { user.firstname ? user.firstname : 'User' }</h1>) : (<h1>Hello Stranger!!</h1>)} 
     </>
     
         

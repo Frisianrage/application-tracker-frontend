@@ -45,7 +45,7 @@ function MostRecentApp() {
                 </tr>
                 </thead>
                 <tbody>
-                {userData && userData.applications ?(
+                {userData && userData.applications[0] ?(
                     userData.applications.map(application => (
                         <LinkContainer key={application._id} to={`/applications/${application._id}`}>
                             <tr>
@@ -57,7 +57,7 @@ function MostRecentApp() {
                     ))
                     ) : (
                     <tr>
-                    <td>NO EMPLOYERS FOUND!</td>
+                    <td>NO APPLICATIONS FOUND!</td>
                     </tr> 
                 )}
                 </tbody>

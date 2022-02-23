@@ -45,7 +45,7 @@ function MostAppliedEmployer() {
               </tr>
             </thead>
             <tbody>
-              {userData ?(
+              {userData && userData[0] ? (
                 userData.map(employer => (
                     <LinkContainer key={employer._id} to={`/employers/profile/${employer._id}`}>
                         <tr>

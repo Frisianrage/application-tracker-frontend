@@ -44,7 +44,7 @@ const NewApplication = ({showModal, setShowModal}) => {
                 country
             }, 
             company: {
-                employer: employer.id,
+                employer: employer._id,
                 contactperson: {
                     name,
                     email,
