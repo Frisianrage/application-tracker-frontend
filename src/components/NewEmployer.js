@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import FormContainer from './FormContainer'
 import { Form, Button, Container, Modal, Row, Col } from 'react-bootstrap'
 
@@ -16,7 +16,7 @@ const NewEmployer = ({showModal, setShowModal}) => {
     const [telephone, setTelephone] = useState('')
     const [mobile, setMobile] = useState('')
     
-    const history = useNavigate()
+    //const history = useNavigate()
     const token = localStorage.getItem('jwtToken')
     
     const config = {
@@ -49,7 +49,7 @@ const NewEmployer = ({showModal, setShowModal}) => {
 
     const onHide = () => {
         setShowModal(false)
-        history('/employers')
+        //history('/employers')
     }
 
     return (

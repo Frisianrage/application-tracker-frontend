@@ -127,7 +127,7 @@ const NewApplication = ({showModal, setShowModal}) => {
                                     Find Employer
                                 </Button>
                                 </Form.Label>
-                                <Form.Control type='employer' placeholder='Enter your employer' disabled defaultValue={employer.name}></Form.Control>
+                                <Form.Control type='employer' placeholder='Enter your employer' disabled defaultValue={employer.companyname}></Form.Control>
                             </Form.Group>
                         </Row>
                         <Row>

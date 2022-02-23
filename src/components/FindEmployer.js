@@ -1,25 +1,33 @@
 import React, { useState } from 'react'
-import { Container, Table, Button, Modal } from 'react-bootstrap'
+import { Container, Table, Button, Modal, Col } from 'react-bootstrap'
 import SearchBox from './SearchBox'
+import NewEmployer from './NewEmployer'
 
 const FindEmployer = ({ findEmployerModal, setFindEmployerModal, setEmployer }) => {
     const [employerData, setEmployerData] = useState('')
+    const [showModal, setShowModal] = useState('')
 
     const onHide = () => {
         setFindEmployerModal(false)
     }
 
-    const handleClick = (id, companyname) => {
-        console.log(employerData)
-        setEmployer({id, companyname})
+    const handleClick = (employer) => {
+        console.log(employer)
+        setEmployer(employer)
         setFindEmployerModal(false)
     }
 
     return (
         <Modal show={findEmployerModal} centered id="mainModal">
+            <NewEmployer showModal={showModal} setShowModal={setShowModal} />
         <Modal.Header>
-        <Modal.Title as="h1" onClick={() => {console.log(employerData)}} >
-            Find Employer
+        <Modal.Title as={Col} onClick={() => {console.log(employerData)}} >
+            <h2>Find Employer</h2>
+        </Modal.Title>
+        <Modal.Title as={Col}>
+            <Button className='my-3' onClick={() => {setShowModal(true)}}>
+                  <i className='fas fa-plus' /> New Employer
+              </Button>
         </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -43,12 +51,12 @@ const FindEmployer = ({ findEmployerModal, setFindEmployerModal, setEmployer }) 
                         employerData.map(employer => (
                             <tr key={employer._id}>
                                 <td>{employer.companyname}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{employer.location.address}</td>
+                                <td>{employer.location.addressTwo}</td>
+                                <td>{employer.location.city}/{employer.location.state}</td>
+                                <td>{employer.location.country}</td>
                                 <td>
-                                    <Button variant='light' className='btn-sm' onClick={() => handleClick(employer._id, employer.companyname)}>
+                                    <Button variant='light' className='btn-sm' onClick={() => handleClick(employer)}>
                                         Save
                                     </Button>
                                 </td>
