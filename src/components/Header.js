@@ -16,7 +16,7 @@ const NavBar = () => {
             <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
                 <Container >
                     <LinkContainer to='/'>
-                        <Navbar.Brand>Home</Navbar.Brand>
+                        <Navbar.Brand>A P P L I C A T E</Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">

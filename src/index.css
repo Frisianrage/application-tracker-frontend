@@ -15,3 +15,38 @@ code {
 #mainModal {
   min-width: 90%
 }
+
+.pre-head {
+  color: grey;
+  text-align: center
+}
+
+.home {
+  background-color: #343a40;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-head{
+  width: 10em;
+  font-size: 72px;
+  color: white;
+  text-align: center;
+}
+
+.home-text {
+  color: white;
+  text-align: center;
+}
+
+.home-btn {
+  position: absolute;
+  width: 10em;
+  text-align: center;
+  top: 70%;
+  margin-top: 3rem;
+}
+

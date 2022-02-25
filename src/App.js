@@ -21,7 +21,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-              <Route exact path='/' element={<HomeScreen />} />
+              <Route exact path='/' element={<HomeScreen />} style={{backgroundColor: '#343a40'}} />
               <Route exact path='/login' element={<LoginScreen />} />
               <Route exact path='/logout' element={<HomeScreen />} />
               <Route exact path='/signin' element={<RegisterScreen />} />
