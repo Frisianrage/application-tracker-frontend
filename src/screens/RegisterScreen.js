@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { AuthContext } from '../context/auth'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import {Form, Button, Container, Modal} from 'react-bootstrap'
 
@@ -65,7 +65,10 @@ function RegisterScreen() {
             </FormContainer>
         </Modal.Body>
         <Modal.Footer className="justify-content-center">
-                 Not registered yet? Click here...
+            Already got a profile? To login click 
+            <Link to='/login'>
+                here...
+            </Link>  
         </Modal.Footer>
     </Modal>
 );
