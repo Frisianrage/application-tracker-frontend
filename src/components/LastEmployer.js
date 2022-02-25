@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Row, Col } from 'react-bootstrap'
 
@@ -55,7 +56,7 @@ function LastEmployer() {
                             <td>{userData[0].location.state}</td>
                             <td>{userData[0].location.country}</td>
                             <td>{userData[0].applications.length}</td>
-                            <td>{userData[0].createdAt}</td>   
+                            <td>{moment(userData[0].createdAt).format('MM/DD/YY')}</td>   
                         </tr>
                     </LinkContainer>
                 ) : (

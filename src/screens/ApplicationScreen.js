@@ -27,9 +27,9 @@ const ApplicationScreen = () => {
     } 
   }
 
-  const deletHandler = async (id) => {
+  const deletHandler = async (id, employerId) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
-      const deleteApp = await axios.delete(`/api/applications/${id}`, config)
+      const deleteApp = await axios.delete(`/api/applications/${id}/delete/${employerId}`, config)
       if(deleteApp){
         setRefresh(true)
       }
@@ -82,7 +82,7 @@ const ApplicationScreen = () => {
                             <i className='fas fa-edit' />
                           </Button>
                         </LinkContainer>
-                        <Button variant='danger' className='btn-sm' onClick={() => deletHandler(application._id)}>
+                        <Button variant='danger' className='btn-sm' onClick={() => deletHandler(application._id, application.company.employer._id)}>
                           <i className='fas fa-trash' />
                         </Button>
                       </td>
