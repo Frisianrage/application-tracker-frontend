@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap'
 import MostRecentApp from '../components/MostRecentApp';
 import MostAppliedEmployer from '../components/MostAppliedEmployer'
@@ -6,6 +7,14 @@ import LastApplication from '../components/LastApplication'
 import LastEmployer from '../components/LastEmployer'
 
 function DashboardScreen() {
+
+  const history = useNavigate()
+
+  const token = localStorage.getItem('jwtToken')
+  if(!token) {
+      history('/')
+  }
+
   return (
     <Container>
       <Row className="align-items-center">

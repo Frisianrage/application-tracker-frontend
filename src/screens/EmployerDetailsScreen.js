@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {Container, Button, Form, Row, Col} from 'react-bootstrap'
 
 const EmployerDetailsScreen = () => {
@@ -17,7 +17,12 @@ const EmployerDetailsScreen = () => {
 
     const {id} =useParams()
 
+    const history = useNavigate()
+
     const token = localStorage.getItem('jwtToken')
+    if(!token) {
+        history('/')
+    }
     
     const config = {
       headers: {

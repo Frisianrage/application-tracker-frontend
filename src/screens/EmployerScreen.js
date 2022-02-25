@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import NewEmployer from '../components/NewEmployer'
@@ -10,7 +11,12 @@ const EmployerScreen = () => {
   const [showModal, setShowModal] = useState(false)
   const [refresh, setRefresh] = useState('false')
 
+  const history = useNavigate()
+
   const token = localStorage.getItem('jwtToken')
+  if(!token) {
+      history('/')
+  }
     
   const config = {
     headers: {

@@ -26,7 +26,7 @@ function RegisterScreen() {
 
     useEffect(() => {
         if(user){
-            history('/')
+            history('/dashboard')
         }
     }, [user,history])
 

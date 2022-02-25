@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import FileBase from 'react-file-base64';
-import { useParams } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import {Container, Button, Form, Row, Col} from 'react-bootstrap'
 import FindEmployer from '../components/FindEmployer'
 
@@ -23,8 +23,12 @@ const ApplicationDetailsScreen = () => {
     const [findEmployerModal, setFindEmployerModal] = useState(false)
 
     const {id} =useParams()
+    const history = useNavigate()
 
     const token = localStorage.getItem('jwtToken')
+    if(!token) {
+        history('/')
+    }
     
     const config = {
       headers: {
