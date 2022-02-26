@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import moment from 'moment'
+import { AuthContext } from '../context/auth'
 import { useNavigate } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
@@ -12,6 +13,8 @@ const ApplicationScreen = () => {
   const [refresh, setRefresh] = useState('false')
 
   const history = useNavigate()
+
+  const {user} = useContext(AuthContext)
 
   const token = localStorage.getItem('jwtToken')
   if(!token) {
@@ -33,11 +36,17 @@ const ApplicationScreen = () => {
     } 
   }
 
+  
+
   const deletHandler = async (id, employerId) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
-      const deleteApp = await axios.delete(`/api/applications/${id}/delete/${employerId}`, config)
+      if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+        window.alert('This application gets deleted here! This is just a demo! No new application deleted!')
+      } else {
+        const deleteApp = await axios.delete(`/api/applications/${id}/delete/${employerId}`, config)
       if(deleteApp){
         setRefresh(true)
+      }
       }
     }
   }

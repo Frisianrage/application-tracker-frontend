@@ -12,7 +12,6 @@ const FindEmployer = ({ findEmployerModal, setFindEmployerModal, setEmployer }) 
     }
 
     const handleClick = (employer) => {
-        console.log(employer)
         setEmployer(employer)
         setFindEmployerModal(false)
     }
@@ -21,7 +20,7 @@ const FindEmployer = ({ findEmployerModal, setFindEmployerModal, setEmployer }) 
         <Modal show={findEmployerModal} centered id="mainModal">
             <NewEmployer showModal={showModal} setShowModal={setShowModal} />
         <Modal.Header>
-        <Modal.Title as={Col} onClick={() => {console.log(employerData)}} >
+        <Modal.Title as={Col}>
             <h2>Find Employer</h2>
         </Modal.Title>
         <Modal.Title as={Col}>

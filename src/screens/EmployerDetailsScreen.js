@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { AuthContext } from '../context/auth'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
 import {Container, Button, Form, Row, Col} from 'react-bootstrap'
@@ -18,6 +19,8 @@ const EmployerDetailsScreen = () => {
     const {id} =useParams()
 
     const history = useNavigate()
+
+    const {user} = useContext(AuthContext)
 
     const token = localStorage.getItem('jwtToken')
     if(!token) {
@@ -57,8 +60,13 @@ const EmployerDetailsScreen = () => {
     },[])
     
     const submitHandler = (e) => {
-        e.preventDefault()
-        updateEmployer() 
+        //e.preventDefault()
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+            window.alert('This employer gets updated here! This is just a demo! No new emlpoyer updated!')
+          } else {
+            updateEmployer()  
+          }
+        
     }
 
     return (
@@ -125,7 +133,7 @@ const EmployerDetailsScreen = () => {
                 <Row>
                 </Row>
                 <Container className="justify-content-center pt-3">
-                    <Button type='submit' variant='primary' className="mx-2">
+                    <Button type='submit' variant='primary' className="mx-2 mb-3">
                         Update
                     </Button>
                 </Container>

@@ -1,9 +1,25 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
+import { AuthContext } from '../context/auth'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 function HomeScreen() {
   const history = useNavigate()
+
+  const { user, login } = useContext(AuthContext)
+  const email = process.env.REACT_APP_DEMO_MAIL
+  const password = process.env.REACT_APP_DEMO_PASSWORD
+
+  const demoHandler = (e) => {
+    e.preventDefault()
+    login(email, password) 
+  }
+
+  useEffect(() => {
+    if(user){
+        history('/dashboard')
+    }
+}, [user,history])
 
   return (
    
@@ -17,9 +33,15 @@ function HomeScreen() {
           </h1>
           <p className="home-text">the new way of keeping track of your job applications</p>
       </div>
-      <Button type='button' className="home-btn" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={() => history('/login')}>
+      <div className="home-btn">
+        <Button type='button' className="mx-3 p-4" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={() => history('/login')}>
         Start here 
       </Button>
+      <Button type='button' className="mx-3 p-4" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={demoHandler}>
+        Demo 
+      </Button>
+      </div>
+      
     </div>
        
   );

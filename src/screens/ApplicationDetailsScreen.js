@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import FileBase from 'react-file-base64';
-import { useNavigate,useParams } from 'react-router-dom';
+import { AuthContext } from '../context/auth'
+import { useNavigate, useParams } from 'react-router-dom';
 import {Container, Button, Form, Row, Col} from 'react-bootstrap'
 import FindEmployer from '../components/FindEmployer'
 
@@ -22,8 +23,10 @@ const ApplicationDetailsScreen = () => {
     const [coverletter, setCoverletter] = useState('')
     const [findEmployerModal, setFindEmployerModal] = useState(false)
 
-    const {id} =useParams()
+    const {id} = useParams()
     const history = useNavigate()
+    
+    const {user} = useContext(AuthContext)
 
     const token = localStorage.getItem('jwtToken')
     if(!token) {
@@ -59,28 +62,39 @@ const ApplicationDetailsScreen = () => {
     }
 
     const updateApplication = async () => {
-       await axios.put(`/api/applications/${id}`, {jobtitle, jobdescription, salary, remote, city, state, country, name, phone, email, employer, status, source}, config)
-    }
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+            window.alert('This application gets updated here! This is just a demo! No new application updated!')
+          } else {
+            await axios.put(`/api/applications/${id}`, {jobtitle, jobdescription, salary, remote, city, state, country, name, phone, email, employer, status, source}, config)
+          }
+        }
     
     useEffect(() => {
         getApplications()
     },[])
     
     const submitHandler = (e) => {
-        e.preventDefault()
+        //e.preventDefault()
         updateApplication() 
     }
 
     const uploadCoverletter = async (e) => {
-        setCoverletter(e)
-        await axios.put(`/api/applications/${id}/coverletter`, e, config)
-        getApplications()
-    }
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+            window.alert('You can upload a cover letter here')
+          } else {
+            setCoverletter(e)
+            await axios.put(`/api/applications/${id}/coverletter`, e, config)
+            getApplications() }
+        }
 
     const deleteCoverletter = async() => {
-        setCoverletter('')
-        await axios.put(`/api/applications/${id}/coverletter`, {content: "", type: "", date: "", name: ""}, config)
-    }
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+            window.alert('You delete the cover letter here')
+          } else {
+            setCoverletter('')
+            await axios.put(`/api/applications/${id}/coverletter`, {content: "", type: "", date: "", name: ""}, config)
+          }
+        }
 
     return (
       <Container>
@@ -191,7 +205,7 @@ const ApplicationDetailsScreen = () => {
                     </Form.Group>
                 </Row>
                 <Container className="justify-content-center pt-3">
-                    <Button type='submit' variant='primary' className="mx-2">
+                    <Button type='submit' variant='primary' className="mx-2 mb-5">
                         Update
                     </Button>
                 </Container>

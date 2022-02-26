@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+}
+
+.wrapper {
+  min-height: 100vh;
+  max-height: 130vh;
 }
 
 code {
@@ -44,9 +50,13 @@ code {
 
 .home-btn {
   position: absolute;
-  width: 10em;
+  width: 50em;
   text-align: center;
   top: 70%;
   margin-top: 3rem;
 }
 
+.home-btn Button {
+  font-size: 26px;
+  width: 9em
+}

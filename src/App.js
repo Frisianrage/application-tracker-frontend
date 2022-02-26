@@ -2,6 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { AuthProvider } from './context/auth'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import EmployerScreen from './screens/EmployerScreen'
@@ -20,7 +21,8 @@ function App() {
     <AuthProvider>
       <Router>
         <Header />
-        <Routes>
+        <div className="wrapper">
+          <Routes>
               <Route exact path='/' element={<HomeScreen />} style={{backgroundColor: '#343a40'}} />
               <Route exact path='/login' element={<LoginScreen />} />
               <Route exact path='/logout' element={<HomeScreen />} />
@@ -34,8 +36,11 @@ function App() {
               <Route exact path='/admin/userlist' element={<UserListScreen />} />
               <Route exact path='/admin/employerlist' element={<EmployerListScreen />} />
               <Route exact path='/admin/applicationlist' element={<ApplicationListScreen />} />
-              <Route exact path='/applications/:id' element={<ApplicationDetailsScreen />} />
+              <Route exact path='/applications/:id' element={<ApplicationDetailsScreen />} /> 
         </Routes>
+        </div>
+        
+        <Footer />
       </Router>
     </AuthProvider>
   );

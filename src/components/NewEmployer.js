@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
-//import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
 import { Form, Button, Container, Modal, Row, Col } from 'react-bootstrap'
 
@@ -16,8 +16,9 @@ const NewEmployer = ({showModal, setShowModal}) => {
     const [telephone, setTelephone] = useState('')
     const [mobile, setMobile] = useState('')
     
-    //const history = useNavigate()
     const token = localStorage.getItem('jwtToken')
+
+    const {user} = useContext(AuthContext)
     
     const config = {
       headers: {
@@ -28,28 +29,32 @@ const NewEmployer = ({showModal, setShowModal}) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        const newEmpl = await axios.post('/api/employers', {
-            companyname, 
-            location: {
-                address,
-                addressTwo,
-                zip_code: zipCode,
-                city,
-                state,
-                country
-            }, 
-            telephone, 
-            email,  
-            mobile
-        }, config) 
-        if(newEmpl) {
-            onHide()
-        }
+
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+            window.alert('A new employer gets created here! This is just a demo! No new emlpoyer created!')
+        } else {
+            const newEmpl = await axios.post('/api/employers', {
+                companyname, 
+                location: {
+                    address,
+                    addressTwo,
+                    zip_code: zipCode,
+                    city,
+                    state,
+                    country
+                }, 
+                telephone, 
+                email,  
+                mobile
+            }, config) 
+            if(newEmpl) {
+                onHide()
+            }
+        }     
     }
 
     const onHide = () => {
         setShowModal(false)
-        //history('/employers')
     }
 
     return (

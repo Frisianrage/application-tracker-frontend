@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
+import { AuthContext } from '../context/auth'
 import { useNavigate } from 'react-router-dom'
 import FormContainer from './FormContainer'
 import FindEmployer from './FindEmployer'
@@ -22,7 +23,10 @@ const NewApplication = ({showModal, setShowModal}) => {
     const [findEmployerModal, setFindEmployerModal] = useState(false)
     
     const history = useNavigate()
+
     const token = localStorage.getItem('jwtToken')
+
+    const {user} = useContext(AuthContext)
     
     const config = {
       headers: {
@@ -33,30 +37,35 @@ const NewApplication = ({showModal, setShowModal}) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        const newApp = await axios.post('/api/applications', {
-           jobtitle, 
-            jobdescription, 
-            salary, 
-            remote, 
-            location: { 
-                city, 
-                state, 
-                country
-            }, 
-            company: {
-                employer: employer._id,
-                contactperson: {
-                    name,
-                    email,
-                    phone
-                }
-            },
-            status, 
-            source
-        }, config) 
-        if(newApp) {
-            onHide()
-        }
+
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+            window.alert('A new employer gets created here! This is just a demo! No new application created!')
+        } else {
+            const newApp = await axios.post('/api/applications', {
+                jobtitle, 
+                 jobdescription, 
+                 salary, 
+                 remote, 
+                 location: { 
+                     city, 
+                     state, 
+                     country
+                 }, 
+                 company: {
+                     employer: employer._id,
+                     contactperson: {
+                         name,
+                         email,
+                         phone
+                     }
+                 },
+                 status, 
+                 source
+             }, config) 
+             if(newApp) {
+                 onHide()
+             }
+        }    
     }
 
     const onHide = () => {

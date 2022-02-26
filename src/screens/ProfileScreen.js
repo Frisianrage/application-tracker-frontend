@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
+import { AuthContext } from '../context/auth'
 import { useParams } from 'react-router-dom';
 import FileBase from 'react-file-base64';
 import {Container, Button, Form, Row, Col} from 'react-bootstrap'
@@ -23,6 +24,8 @@ const ProfileScreen = () => {
     const params = useParams()
 
     const token = localStorage.getItem('jwtToken')
+
+    const {user} = useContext(AuthContext)
     
     const config = {
       headers: {
@@ -57,7 +60,11 @@ const ProfileScreen = () => {
     }
 
     const updateUser = async () => {
-      await axios.put('/api/users/profile', {firstName, lastName, address, addressTwo, city, zip_code: zipCode, state, country, mobile, telephone, email}, config)
+      if(password.length === 0) {
+        await axios.put('/api/users/profile', {firstName, lastName, address, addressTwo, city, zip_code: zipCode, state, country, mobile, telephone, email}, config)
+      } else {
+        await axios.put('/api/users/profile', {firstName, lastName, address, addressTwo, city, zip_code: zipCode, state, country, mobile, telephone, email, password}, config)
+      }
     }
     
     useEffect(() => {
@@ -65,12 +72,16 @@ const ProfileScreen = () => {
     },[])
     
     const submitHandler = (e) => {
-        e.preventDefault()
+      e.preventDefault()
 
-        if(password !== confirmPassword) {
-          console.log('Password do not match!')
+      if(password !== confirmPassword) {
+        console.log('Password do not match!')
       } else {
-          updateUser()
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+          window.alert('The profile gets updated here! This is just a demo! No profile updated!')
+        } else {
+           updateUser()
+        }
       }
     }
 
@@ -80,11 +91,20 @@ const ProfileScreen = () => {
       getUser()
     }
 
+    
+
     const deleteResume = async() => {
-      setResume({})
-      await axios.put('/api/users/profile/resume', {content: "", type: "", date: "", name: ""}, config)
-      getUser()
-    }
+      if(window.confirm('Are you sure you want to delete the resume?')){
+        if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
+          window.alert('The resume gets deleted here! This is just a demo! No resume deleted!')
+        } else {
+          setResume({})
+        await axios.put('/api/users/profile/resume', {content: "", type: "", date: "", name: ""}, config)
+        getUser()
+          }
+        } 
+      }
+    
 
     return (
       <Container>
@@ -170,7 +190,7 @@ const ProfileScreen = () => {
                 <Form.Control type='password' placeholder='Confirm password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
             </Form.Group>
             </Row>
-            <Button type='submit' variant='primary'>
+            <Button type='submit' variant='primary' className="mb-5">
                 Update
             </Button>
           </Form> 
