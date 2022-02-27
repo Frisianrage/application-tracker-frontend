@@ -20,8 +20,9 @@ const ProfileScreen = () => {
     const [resume, setResume] = useState({})
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
-    const params = useParams()
+    const {id} = useParams()
 
     const token = localStorage.getItem('jwtToken')
 
@@ -34,31 +35,6 @@ const ProfileScreen = () => {
       }
     }
 
-    const getUser = async () => {
-      let data
-
-      if(params && params.id){
-        data = await axios.get(`/api/users/${params.id}`, config)
-      } else {
-        data = await axios.get('/api/users/profile', config)
-      }
-      
-      if(data) {
-        setFirstName(data.data.firstname)
-        setLastName(data.data.lastname)
-        setEmail(data.data.email)
-        setAddress(data.data.location.address)
-        setAddressTwo(data.data.location.addressTwo)
-        setZipCode(data.data.location.zip_code)
-        setCity(data.data.location.city)
-        setState(data.data.location.state)
-        setCountry(data.data.location.country)
-        setMobile(data.data.mobile)
-        setTelephone(data.data.telephone)
-        setResume(data.data.resume)
-      } 
-    }
-
     const updateUser = async () => {
       if(password.length === 0) {
         await axios.put('/api/users/profile', {firstName, lastName, address, addressTwo, city, zip_code: zipCode, state, country, mobile, telephone, email}, config)
@@ -68,9 +44,51 @@ const ProfileScreen = () => {
     }
     
     useEffect(() => {
-      getUser()
-    },[])
+        const getUser = async () => {
+        setIsLoading(true)
+        let data
+
+        try {
+          if(id){
+            data = await axios.get(`/api/users/${id}`, {
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}` 
+              }
+            })
+          } else {
+            data = await axios.get('/api/users/profile', {
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}` 
+              }
+            })
+          }
+          
+          if(data) {
+            setFirstName(data.data.firstname)
+            setLastName(data.data.lastname)
+            setEmail(data.data.email)
+            setAddress(data.data.location.address)
+            setAddressTwo(data.data.location.addressTwo)
+            setZipCode(data.data.location.zip_code)
+            setCity(data.data.location.city)
+            setState(data.data.location.state)
+            setCountry(data.data.location.country)
+            setMobile(data.data.mobile)
+            setTelephone(data.data.telephone)
+            setResume(data.data.resume)
+            
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }; 
+      getUser();
+      setIsLoading(false)
+    },[isLoading, id,token])
     
+
     const submitHandler = (e) => {
       e.preventDefault()
 
@@ -87,8 +105,10 @@ const ProfileScreen = () => {
 
     const uploadResume = async (e) => {
       setResume(e)
-      await axios.put('/api/users/profile/resume', e, config)
-      getUser()
+      const upload = await axios.put('/api/users/profile/resume', e, config)
+      if(upload) {
+        setIsLoading(true)
+      }
     }
 
     
@@ -99,8 +119,10 @@ const ProfileScreen = () => {
           window.alert('The resume gets deleted here! This is just a demo! No resume deleted!')
         } else {
           setResume({})
-        await axios.put('/api/users/profile/resume', {content: "", type: "", date: "", name: ""}, config)
-        getUser()
+          const deleted = await axios.put('/api/users/profile/resume', {content: "", type: "", date: "", name: ""}, config)
+          if(deleted) {
+          setIsLoading(true)
+        }
           }
         } 
       }

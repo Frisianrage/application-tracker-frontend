@@ -7,7 +7,7 @@ import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
 const UserListScreen = () => {
   const [userData, setUserData] = useState('')
-  const [refresh, setRefresh] = useState('false')
+  const [isLoading, setIsLoading] = useState('false')
 
   const history = useNavigate()
 
@@ -23,27 +23,35 @@ const UserListScreen = () => {
     }
   }
 
-  const getUsers = async () => {
-    const {data} = await axios.get('/api/users/admin/userslist', config)
-     
-    if(data) {
-      setUserData(data)
-    } 
-  }
-
   const deletHandler = async (id) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
       const deleteApp = await axios.delete(`/api/users/${id}`, config)
       if(deleteApp){
-        setRefresh(true)
+        setIsLoading(true)
       }
     }
   }
 
   useEffect(() => {
-      getUsers()
-      setRefresh(false)
-  }, [refresh])
+      const getUsers = async () => {
+        setIsLoading(true)
+        try {
+          const {data} = await axios.get('/api/users/admin/userslist', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            }
+          })
+          if(data) {
+            setUserData(data)
+          }
+        } catch (error) {
+          console.log(error)
+        }
+    }; 
+    setIsLoading(false)
+    getUsers() 
+  }, [isLoading, token])
 
     
   return (

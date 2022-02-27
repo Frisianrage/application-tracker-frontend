@@ -7,7 +7,7 @@ import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
 const ApplicationsListScreen = () => {
   const [applicationData, setApplicationData] = useState('')
-  const [refresh, setRefresh] = useState('false')
+  const [isLoading, setIsLoading] = useState('false')
 
   const history = useNavigate()
 
@@ -16,36 +16,43 @@ const ApplicationsListScreen = () => {
       history('/')
   }
 
-  
-    
-  const config = {
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` 
-    }
-  }
-
-  const getApplications = async () => {
-    const {data} = await axios.get('/api/applications/admin/applicationslist', config)
-     
-    if(data) {
-      setApplicationData(data)
-    } 
-  }
-
   const deletHandler = async (id) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
-      const deleteApp = await axios.delete(`/api/applications/${id}`, config)
+      const deleteApp = await axios.delete(`/api/applications/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
+      })
       if(deleteApp){
-        setRefresh(true)
+        setIsLoading(true)
       }
     }
   }
 
   useEffect(() => {
+    const getApplications = async () => {
+      setIsLoading(true)
+      
+      try {
+        const {data} = await axios.get('/api/applications/admin/applicationslist', {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+          }
+        })
+       
+      if(data) {
+        setApplicationData(data)
+      } 
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }
       getApplications()
-      setRefresh(false)
-  }, [refresh])
+      setIsLoading(false)
+  }, [isLoading, token])
 
     
   return (

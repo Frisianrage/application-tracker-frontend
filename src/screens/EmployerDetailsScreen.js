@@ -15,6 +15,7 @@ const EmployerDetailsScreen = () => {
     const [email, setEmail] = useState('')
     const [telephone, setTelephone] = useState('')
     const [mobile, setMobile] = useState('')
+    const [isLoading, setIsLoading] = useState('false')
 
     const {id} =useParams()
 
@@ -34,30 +35,42 @@ const EmployerDetailsScreen = () => {
       }
     }
 
-    const getEmployer = async () => {
-      const {data} = await axios.get(`/api/employers/profile/${id}`, config)
-     
-      if(data) {
-        setCompanyname(data.companyname)
-        setAddress(data.location.address)
-        setAddressTwo(data.location.addressTwo)
-        setZipCode(data.location.zip_code)
-        setCity(data.location.city)
-        setState(data.location.state)
-        setCountry(data.location.country)
-        setEmail(data.email)
-        setTelephone(data.telephone)
-        setMobile(data.mobile)
-      } 
-    }
+    
 
     const updateEmployer = async () => {
        await axios.put(`/api/employers/profile/${id}`, { companyname, address, addressTwo, zipCode, city, state, country, email, telephone, mobile}, config)
     }
     
     useEffect(() => {
-        getEmployer()
-    },[])
+        const getEmployer = async () => {
+            setIsLoading(true)
+            try {
+                const {data} = await axios.get(`/api/employers/profile/${id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` 
+                    }
+                  })
+               
+                if(data) {
+                  setCompanyname(data.companyname)
+                  setAddress(data.location.address)
+                  setAddressTwo(data.location.addressTwo)
+                  setZipCode(data.location.zip_code)
+                  setCity(data.location.city)
+                  setState(data.location.state)
+                  setCountry(data.location.country)
+                  setEmail(data.email)
+                  setTelephone(data.telephone)
+                  setMobile(data.mobile)
+                } 
+            } catch (error) {
+                console.log(error)
+            }
+          }
+            getEmployer()
+            setIsLoading(false)
+    },[id, token, isLoading])
     
     const submitHandler = (e) => {
         //e.preventDefault()

@@ -10,7 +10,7 @@ import NewApplication from '../components/NewApplication'
 const ApplicationScreen = () => {
   const [userData, setUserData] = useState('')
   const [showModal, setShowModal] = useState(false)
-  const [refresh, setRefresh] = useState('false')
+  const [isLoading, setIsLoading] = useState('false')
 
   const history = useNavigate()
 
@@ -20,41 +20,47 @@ const ApplicationScreen = () => {
   if(!token) {
       history('/')
   }
-    
-  const config = {
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` 
-    }
-  }
-
-  const getApplications = async () => {
-    const {data} = await axios.get('/api/applications/summary', config)
-     
-    if(data) {
-      setUserData(data)
-    } 
-  }
-
-  
 
   const deletHandler = async (id, employerId) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
       if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
         window.alert('This application gets deleted here! This is just a demo! No new application deleted!')
       } else {
-        const deleteApp = await axios.delete(`/api/applications/${id}/delete/${employerId}`, config)
-      if(deleteApp){
-        setRefresh(true)
-      }
+        const deleteApp = await axios.delete(`/api/applications/${id}/delete/${employerId}`, {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+          }
+        })
+        if(deleteApp){
+          setIsLoading(true)
+        }
       }
     }
   }
 
   useEffect(() => {
+    const getApplications = async () => {
+      setIsLoading(true)
+      
+      try {
+        const {data} = await axios.get('/api/applications/summary', {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+          }
+        })
+       
+      if(data) {
+        setUserData(data)
+      } 
+      } catch (error) {
+        console.log(error)
+      }
+    }
       getApplications()
-      setRefresh(false)
-  }, [showModal, refresh])
+      setIsLoading(false)
+  }, [showModal, isLoading, token])
 
     
   return (

@@ -6,27 +6,33 @@ import { Container, Table, Row, Col } from 'react-bootstrap'
 
 function MostRecentApp() {
     const [userData, setUserData] = useState('')
+    const [isLoading, setIsLoading] = useState('false')
   
     const token = localStorage.getItem('jwtToken')
       
-    const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-      }
-    }
-  
-    const getApplications = async () => {
-      const {data} = await axios.get('/api/applications/mostrecent', config)
-       
-      if(data) {
-        setUserData(data)
-      } 
-    }
-
     useEffect(() => {
+        const getApplications = async () => {
+            setIsLoading(true)
+
+            try {
+              const {data} = await axios.get('/api/applications/mostrecent', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                }
+              })
+             
+            if(data) {
+              setUserData(data)
+            }   
+            } catch (error) {
+              console.log(error)  
+            }
+            
+          }
         getApplications()
-    }, [])
+        setIsLoading(false)
+    }, [isLoading, token])
 
     
     return (

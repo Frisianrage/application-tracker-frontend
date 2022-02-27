@@ -22,8 +22,10 @@ const ApplicationDetailsScreen = () => {
     const [source, setSource] = useState('')
     const [coverletter, setCoverletter] = useState('')
     const [findEmployerModal, setFindEmployerModal] = useState(false)
+    const [isLoading, setIsLoading] = useState('false')
 
     const {id} = useParams()
+
     const history = useNavigate()
     
     const {user} = useContext(AuthContext)
@@ -40,27 +42,6 @@ const ApplicationDetailsScreen = () => {
       }
     }
 
-    const getApplications = async () => {
-      const {data} = await axios.get(`/api/applications/${id}`, config)
-     
-      if(data) {
-        setJobtitle(data.jobtitle)
-        setJobdescription(data.jobdescription)
-        setSalary(data.salary)
-        setRemote(data.remote)
-        setCity(data.location.city)
-        setState(data.location.state)
-        setCountry(data.location.country)
-        setEmployer(data.company.employer)
-        setName(data.company.contactperson.name)
-        setEmail(data.company.contactperson.email)
-        setPhone(data.company.contactperson.phone)
-        setStatus(data.status)
-        setSource(data.source)
-        setCoverletter(data.coverletter)
-      } 
-    }
-
     const updateApplication = async () => {
         if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
             window.alert('This application gets updated here! This is just a demo! No new application updated!')
@@ -70,8 +51,40 @@ const ApplicationDetailsScreen = () => {
         }
     
     useEffect(() => {
+        const getApplications = async () => {
+            setIsLoading(true)
+
+            try {
+                const {data} = await axios.get(`/api/applications/${id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` 
+                    }
+                  })
+           
+                if(data) {
+                  setJobtitle(data.jobtitle)
+                  setJobdescription(data.jobdescription)
+                  setSalary(data.salary)
+                  setRemote(data.remote)
+                  setCity(data.location.city)
+                  setState(data.location.state)
+                  setCountry(data.location.country)
+                  setEmployer(data.company.employer)
+                  setName(data.company.contactperson.name)
+                  setEmail(data.company.contactperson.email)
+                  setPhone(data.company.contactperson.phone)
+                  setStatus(data.status)
+                  setSource(data.source)
+                  setCoverletter(data.coverletter)
+                }  
+            } catch (error) {
+                console.log(error)
+            }
+          }
         getApplications()
-    },[])
+        setIsLoading(false)
+    },[isLoading, token, id])
     
     const submitHandler = (e) => {
         //e.preventDefault()
@@ -84,7 +97,7 @@ const ApplicationDetailsScreen = () => {
           } else {
             setCoverletter(e)
             await axios.put(`/api/applications/${id}/coverletter`, e, config)
-            getApplications() }
+            setIsLoading(true) }
         }
 
     const deleteCoverletter = async() => {

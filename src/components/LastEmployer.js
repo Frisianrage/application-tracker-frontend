@@ -5,28 +5,33 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Table, Row, Col } from 'react-bootstrap'
 
 function LastEmployer() {
-    const [userData, setUserData] = useState('')
+  const [userData, setUserData] = useState('')
+  const [isLoading, setIsLoading] = useState('false')
 
   const token = localStorage.getItem('jwtToken')
-    
-  const config = {
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` 
-    }
-  }
-
-  const getEmployer = async () => {
-    const {data} = await axios.get('/api/employers/lastchanged', config)
-     
-    if(data) {
-      setUserData(data)
-    } 
-  }
-
+  
   useEffect(() => {
+    const getEmployer = async () => {
+      setIsLoading(true)
+      
+      try {
+        const {data} = await axios.get('/api/employers/lastchanged', {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+          }
+        })
+       
+        if(data) {
+          setUserData(data)
+        } 
+      } catch (error) {
+        console.log(error)
+      }
+    }
       getEmployer()
-  }, [])
+      setIsLoading(false)
+  }, [isLoading, token])
 
     
   return (

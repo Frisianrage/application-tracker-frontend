@@ -37,9 +37,8 @@ function App() {
               <Route exact path='/admin/employerlist' element={<EmployerListScreen />} />
               <Route exact path='/admin/applicationlist' element={<ApplicationListScreen />} />
               <Route exact path='/applications/:id' element={<ApplicationDetailsScreen />} /> 
-        </Routes>
+          </Routes>
         </div>
-        
         <Footer />
       </Router>
     </AuthProvider>

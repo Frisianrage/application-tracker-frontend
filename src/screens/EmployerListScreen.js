@@ -7,43 +7,50 @@ import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 
 const EmployerListScreen = () => {
   const [employerData, setEmployerData] = useState('')
-  const [refresh, setRefresh] = useState('false')
+  const [isLoading, setIsLoading] = useState('false')
 
   const history = useNavigate()
 
   const token = localStorage.getItem('jwtToken')
   if(!token) {
       history('/')
-  }
-    
-  const config = {
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` 
-    }
-  }
-
-  const getEmployers = async () => {
-    const {data} = await axios.get('/api/employers/admin/employerlist', config)
-     
-    if(data) {
-      setEmployerData(data)
-    } 
-  }
+  } 
 
   const deletHandler = async (id) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
-      const deleteApp = await axios.delete(`/api/employers/${id}`, config)
+      const deleteApp = await axios.delete(`/api/employers/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
+      })
       if(deleteApp){
-        setRefresh(true)
+        setIsLoading(true)
       }
     }
   }
 
   useEffect(() => {
+    const getEmployers = async () => {
+      isLoading(true)
+      try {
+        const {data} = await axios.get('/api/employers/admin/employerlist', {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+          }
+        })
+         
+        if(data) {
+          setEmployerData(data)
+        } 
+      } catch (error) {
+        console.log(error)
+      }
+    }
       getEmployers()
-      setRefresh(false)
-  }, [refresh])
+      setIsLoading(false)
+  }, [isLoading, token])
 
     
   return (
