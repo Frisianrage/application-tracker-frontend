@@ -104,11 +104,11 @@ const EmployerDetailsScreen = () => {
                         <Form.Label>ZIP Code</Form.Label>
                         <Form.Control type='text' placeholder='Enter a zip code' value={zipCode} onChange={(e) => setZipCode(e.target.value)}></Form.Control>
                     </Form.Group>
-                    <Form.Group as={Col} controlId='jobdescription'>
+                    <Form.Group as={Col} controlId='state'>
                         <Form.Label>State</Form.Label>
                         <Form.Control type='text' placeholder='Enter your state' value={state} onChange={(e) => setState(e.target.value)}></Form.Control>
                     </Form.Group>
-                    <Form.Group as={Col} controlId='Salary'>
+                    <Form.Group as={Col} controlId='country'>
                         <Form.Label>Country</Form.Label>
                         <Form.Control type='text' placeholder='Enter a country' value={country} onChange={(e) => setCountry(e.target.value)}></Form.Control>
                     </Form.Group>

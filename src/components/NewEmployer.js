@@ -72,7 +72,7 @@ const NewEmployer = ({showModal, setShowModal}) => {
                                 Company name:
                             </Modal.Title>
                             <Form.Group controlId='companyname'>
-                                <Form.Control type='companyname' placeholder='Enter a company name' value={companyname} onChange={(e) => setCompanyname(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter a company name' value={companyname} onChange={(e) => setCompanyname(e.target.value)}></Form.Control>
                             </Form.Group>
                         </Row>
                         <Row>
@@ -81,27 +81,27 @@ const NewEmployer = ({showModal, setShowModal}) => {
                             </Modal.Title>
                             <Form.Group controlId='address'>
                                 <Form.Label>Address</Form.Label>
-                                <Form.Control type='address' placeholder='Enter a address' value={address} onChange={(e) => setAddress(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter a address' value={address} onChange={(e) => setAddress(e.target.value)}></Form.Control>
                             </Form.Group>
                             <Form.Group controlId='addressTwo'>
                                 <Form.Label>Address 2</Form.Label>
-                                <Form.Control type='addressTwo' placeholder='Enter your address' value={addressTwo} onChange={(e) => setAddressTwo(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter your address' value={addressTwo} onChange={(e) => setAddressTwo(e.target.value)}></Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId='city'>
                                 <Form.Label>City</Form.Label>
-                                <Form.Control type='city' placeholder='Enter a city' value={city} onChange={(e) => setCity(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter a city' value={city} onChange={(e) => setCity(e.target.value)}></Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId='zipCode'>
                                 <Form.Label>Zip Code</Form.Label>
-                                <Form.Control type='zipCode' placeholder='Enter a zipCode' value={zipCode} onChange={(e) => setZipCode(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter a zipCode' value={zipCode} onChange={(e) => setZipCode(e.target.value)}></Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId='state'>
                                 <Form.Label>State</Form.Label>
-                                <Form.Control type='state' placeholder='Enter your state' value={state} onChange={(e) => setState(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter your state' value={state} onChange={(e) => setState(e.target.value)}></Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId='country'>
                                 <Form.Label>Country</Form.Label>
-                                <Form.Control type='country' placeholder='Enter a country' value={country} onChange={(e) => setCountry(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter a country' value={country} onChange={(e) => setCountry(e.target.value)}></Form.Control>
                             </Form.Group>
                         </Row>
                         <Row>
@@ -114,11 +114,11 @@ const NewEmployer = ({showModal, setShowModal}) => {
                             </Form.Group>
                             <Form.Group as={Col} controlId='telephone'>
                                 <Form.Label>Telephone</Form.Label>
-                                <Form.Control type='telephone' placeholder='Enter your telephone' value={telephone} onChange={(e) => setTelephone(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter your telephone' value={telephone} onChange={(e) => setTelephone(e.target.value)}></Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId='mobile'>
                                 <Form.Label>Mobile</Form.Label>
-                                <Form.Control type='mobile' placeholder='Enter your mobile' value={mobile} onChange={(e) => setMobile(e.target.value)}></Form.Control>
+                                <Form.Control type='text' placeholder='Enter your mobile' value={mobile} onChange={(e) => setMobile(e.target.value)}></Form.Control>
                             </Form.Group>
                         </Row>
                         <Container className="justify-content-center pt-3">

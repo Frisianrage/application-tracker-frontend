@@ -131,11 +131,11 @@ const ProfileScreen = () => {
             <Row className="my-3">
               <Form.Group as={Col} controlId='firstname'>
                   <Form.Label>Firstname</Form.Label>
-                  <Form.Control type='firstname' placeholder='Enter your firstname' value={firstName} onChange={(e) => setFirstName(e.target.value)}></Form.Control>
+                  <Form.Control type='text' placeholder='Enter your firstname' value={firstName} onChange={(e) => setFirstName(e.target.value)}></Form.Control>
               </Form.Group>
               <Form.Group as={Col} controlId='lastname'>
                   <Form.Label>Lastname</Form.Label>
-                  <Form.Control type='lastname' placeholder='Enter your lastname' value={lastName} onChange={(e) => setLastName(e.target.value)}></Form.Control>
+                  <Form.Control type='text' placeholder='Enter your lastname' value={lastName} onChange={(e) => setLastName(e.target.value)}></Form.Control>
               </Form.Group>
             </Row>
             <Row className="my-3 py-3">
@@ -145,39 +145,39 @@ const ProfileScreen = () => {
               </Form.Group>
               <Form.Group as={Col} controlId='mobile'>
                   <Form.Label>Mobile</Form.Label>
-                  <Form.Control type='mobile' placeholder='Enter your mobile number' value={mobile} onChange={(e) => setMobile(e.target.value)}></Form.Control>
+                  <Form.Control type='text' placeholder='Enter your mobile number' value={mobile} onChange={(e) => setMobile(e.target.value)}></Form.Control>
               </Form.Group>
               <Form.Group as={Col} controlId='telephone'>
                   <Form.Label>Telephone</Form.Label>
-                  <Form.Control type='telephone' placeholder='Enter your telephone number' value={telephone} onChange={(e) => setTelephone(e.target.value)}></Form.Control>
+                  <Form.Control type='text' placeholder='Enter your telephone number' value={telephone} onChange={(e) => setTelephone(e.target.value)}></Form.Control>
               </Form.Group>
             </Row>
             <Row className="my-3 py-3">
                 <Form.Group controlId='address'>
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type='adress' placeholder='Enter your adress' value={address} onChange={(e) => setAddress(e.target.value)}></Form.Control>
+                    <Form.Control type='text' placeholder='Enter your adress' value={address} onChange={(e) => setAddress(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='addressTwo' className="pt-3">
                     <Form.Label>Address2</Form.Label>
-                    <Form.Control type='adressTwo' placeholder='Enter your adress' value={addressTwo} onChange={(e) => setAddressTwo(e.target.value)}></Form.Control>
+                    <Form.Control type='text' placeholder='Enter your adress' value={addressTwo} onChange={(e) => setAddressTwo(e.target.value)}></Form.Control>
                 </Form.Group>
             </Row>
             <Row className="my-3 py-3">
                 <Form.Group as={Col} controlId='zip'>
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control type='zip' placeholder='Enter your zip code' value={zipCode} onChange={(e) => setZipCode(e.target.value)}></Form.Control>
+                    <Form.Control type='text' placeholder='Enter your zip code' value={zipCode} onChange={(e) => setZipCode(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} controlId='city'>
                     <Form.Label>City</Form.Label>
-                    <Form.Control type='city' placeholder='Enter your city code' value={city} onChange={(e) => setCity(e.target.value)}></Form.Control>
+                    <Form.Control type='text' placeholder='Enter your city code' value={city} onChange={(e) => setCity(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} controlId='state'>
                     <Form.Label>State</Form.Label>
-                    <Form.Control type='state' placeholder='Enter your state code' value={state} onChange={(e) => setState(e.target.value)}></Form.Control>
+                    <Form.Control type='text' placeholder='Enter your state code' value={state} onChange={(e) => setState(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} controlId='country'>
                     <Form.Label>Country</Form.Label>
-                    <Form.Control type='country' placeholder='Enter your country' value={country} onChange={(e) => setCountry(e.target.value)}></Form.Control>
+                    <Form.Control type='text' placeholder='Enter your country' value={country} onChange={(e) => setCountry(e.target.value)}></Form.Control>
               </Form.Group>
             </Row>
             <Row className="my-3 py-3">
