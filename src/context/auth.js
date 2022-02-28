@@ -49,6 +49,7 @@ const AuthProvider = (props) => {
 
     const login = async (email, password) => {
         const config = {
+            baseURL: "https://floating-tundra-88204.herokuapp.com",
             headers: {
                 'Content-Type': 'application/json'
             }
