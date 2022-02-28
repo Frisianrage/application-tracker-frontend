@@ -17,6 +17,7 @@ const UserListScreen = () => {
   }
     
   const config = {
+    baseURL: process.env.REACT_APP_BASEURL,
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` 
@@ -37,6 +38,7 @@ const UserListScreen = () => {
         setIsLoading(true)
         try {
           const {data} = await axios.get('/api/users/admin/userslist', {
+            baseURL: process.env.REACT_APP_BASEURL,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}` 

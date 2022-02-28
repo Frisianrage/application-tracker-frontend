@@ -27,6 +27,7 @@ const EmployerScreen = () => {
         window.alert('This employer gets deleted here! This is just a demo! No new emlpoyer deleted!')
       } else {
         const deleteEmpl = await axios.delete(`/api/employers/profile/${id}`, {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 
@@ -45,6 +46,7 @@ const EmployerScreen = () => {
 
       try {
         const {data} = await axios.get('/api/employers', {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 

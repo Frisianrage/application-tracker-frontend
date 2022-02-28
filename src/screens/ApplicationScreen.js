@@ -27,6 +27,7 @@ const ApplicationScreen = () => {
         window.alert('This application gets deleted here! This is just a demo! No new application deleted!')
       } else {
         const deleteApp = await axios.delete(`/api/applications/${id}/delete/${employerId}`, {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 
@@ -45,6 +46,7 @@ const ApplicationScreen = () => {
       
       try {
         const {data} = await axios.get('/api/applications/summary', {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 

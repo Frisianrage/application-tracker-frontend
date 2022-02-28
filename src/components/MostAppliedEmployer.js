@@ -15,6 +15,7 @@ function MostAppliedEmployer() {
 
         try {
           const {data} = await axios.get('/api/employers/mostapplied', {
+            baseURL: process.env.REACT_APP_BASEURL,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}` 

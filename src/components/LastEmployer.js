@@ -16,6 +16,7 @@ function LastEmployer() {
       
       try {
         const {data} = await axios.get('/api/employers/lastchanged', {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 

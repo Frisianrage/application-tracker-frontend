@@ -29,6 +29,7 @@ const ProfileScreen = () => {
     const {user} = useContext(AuthContext)
     
     const config = {
+      baseURL: process.env.REACT_APP_BASEURL,
       headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}` 
@@ -51,6 +52,7 @@ const ProfileScreen = () => {
         try {
           if(id){
             data = await axios.get(`/api/users/${id}`, {
+              baseURL: process.env.REACT_APP_BASEURL,
               headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${token}` 
@@ -58,6 +60,7 @@ const ProfileScreen = () => {
             })
           } else {
             data = await axios.get('/api/users/profile', {
+              baseURL: process.env.REACT_APP_BASEURL,
               headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${token}` 

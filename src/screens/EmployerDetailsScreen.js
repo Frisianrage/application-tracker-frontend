@@ -29,10 +29,11 @@ const EmployerDetailsScreen = () => {
     }
     
     const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-      }
+        baseURL: process.env.REACT_APP_BASEURL,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
     }
 
     
@@ -46,6 +47,7 @@ const EmployerDetailsScreen = () => {
             setIsLoading(true)
             try {
                 const {data} = await axios.get(`/api/employers/profile/${id}`, {
+                    baseURL: process.env.REACT_APP_BASEURL,
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}` 

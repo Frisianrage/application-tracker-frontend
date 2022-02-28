@@ -36,10 +36,11 @@ const ApplicationDetailsScreen = () => {
     }
     
     const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-      }
+        baseURL: process.env.REACT_APP_BASEURL,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
     }
 
     const updateApplication = async () => {
@@ -56,6 +57,7 @@ const ApplicationDetailsScreen = () => {
 
             try {
                 const {data} = await axios.get(`/api/applications/${id}`, {
+                    baseURL: process.env.REACT_APP_BASEURL,
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}` 

@@ -8,6 +8,7 @@ const SearchBox = ({setEmployerData}) => {
     const token = localStorage.getItem('jwtToken')
 
     const config = {
+        baseURL: process.env.REACT_APP_BASEURL,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}` 

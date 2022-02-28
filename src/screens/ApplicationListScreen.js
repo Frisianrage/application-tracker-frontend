@@ -19,6 +19,7 @@ const ApplicationsListScreen = () => {
   const deletHandler = async (id) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
       const deleteApp = await axios.delete(`/api/applications/${id}`, {
+        baseURL: process.env.REACT_APP_BASEURL,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}` 
@@ -36,6 +37,7 @@ const ApplicationsListScreen = () => {
       
       try {
         const {data} = await axios.get('/api/applications/admin/applicationslist', {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 

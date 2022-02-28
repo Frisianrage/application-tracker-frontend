@@ -19,6 +19,7 @@ const EmployerListScreen = () => {
   const deletHandler = async (id) => {
     if(window.confirm('Are you sure you want to delete this Application?')){
       const deleteApp = await axios.delete(`/api/employers/${id}`, {
+        baseURL: process.env.REACT_APP_BASEURL,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}` 
@@ -35,6 +36,7 @@ const EmployerListScreen = () => {
       isLoading(true)
       try {
         const {data} = await axios.get('/api/employers/admin/employerlist', {
+          baseURL: process.env.REACT_APP_BASEURL,
           headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` 

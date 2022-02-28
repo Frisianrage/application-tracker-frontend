@@ -29,10 +29,11 @@ const NewApplication = ({showModal, setShowModal}) => {
     const {user} = useContext(AuthContext)
     
     const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-      }
+        baseURL: process.env.REACT_APP_BASEURL,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
     }
 
     const submitHandler = async (e) => {

@@ -16,6 +16,7 @@ function MostRecentApp() {
 
             try {
               const {data} = await axios.get('/api/applications/mostrecent', {
+                baseURL: process.env.REACT_APP_BASEURL,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}` 
