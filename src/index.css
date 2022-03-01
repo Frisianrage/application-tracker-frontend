@@ -68,11 +68,11 @@ code {
 
 /* Small devices (landscape phones, 544px and up) */
 
-@media screen and (min-width: 320px) {  
+@media screen and (min-width: 360px) {  
   .pre-head { font-size: 0.5rem; }
   .home-text {font-size: 0.25rem;}
   .home-head {font-size:1rem;} /*1rem = 16px*/
-  .home-btn {top: 40%}
+  .home-btn {top: 45%}
   .home-btn Button {
     font-size: 0.6rem;
     width: 9em;
