@@ -69,9 +69,9 @@ code {
 /* Small devices (landscape phones, 544px and up) */
 
 @media screen and (min-width: 360px) {  
-  .pre-head { font-size: 0.5rem; }
-  .home-text {font-size: 0.25rem;}
-  .home-head {font-size:1rem;} /*1rem = 16px*/
+  .pre-head { font-size: 0.7rem; }
+  .home-text {font-size: 0.4rem;}
+  .home-head {font-size:1.6rem;} /*1rem = 16px*/
   .home-btn {top: 45%}
   .home-btn Button {
     font-size: 0.6rem;
@@ -82,7 +82,7 @@ code {
 }
 
 @media screen and (min-width: 544px) {  
-  .pre-head { font-size: 0.7rem; }
+  .pre-head { font-size: 0.8rem; }
   .home-text {font-size: 0.5rem;}
   .home-btn {top: 45%}
   .home-btn Button {
@@ -91,11 +91,11 @@ code {
     padding: 0.5rem !important;
     margin: 0.5rem !important
   }
-  .home-head {font-size:1.5rem;} /*1rem = 16px*/
+  .home-head {font-size:1.8rem;} /*1rem = 16px*/
 }
  
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media screen and (min-width: 768px) {  
+@media screen and (min-width: 740px) {  
   .pre-head { font-size: 1.1rem; }
   .home-text {font-size: 0.8rem;}
   .home-head {font-size:2.5rem;} /*1rem = 16px*/
