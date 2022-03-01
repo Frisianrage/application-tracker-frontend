@@ -33,7 +33,7 @@ function HomeScreen() {
               <pre className='home-head'>A P P L I C A T E</pre> 
           </Row>
           <Row as='h6'>
-            <pre className='home-text'>the new way of keeping track of your job applications</pre>
+            <pre className='home-text'>keep track of your job applications</pre>
           </Row>
           <Row >
           <pre className="home-btn">
