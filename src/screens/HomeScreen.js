@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import { AuthContext } from '../context/auth'
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 function HomeScreen() {
@@ -23,25 +23,34 @@ function HomeScreen() {
 
   return (
    
-    <div className="home">
-      <div>
-          <h4 className="pre-head">
-            <pre>W E L C O M E  T O</pre>
-          </h4>
-          <h1 className="home-head">
-            A P P L I C A T E 
-          </h1>
-          <p className="home-text">the new way of keeping track of your job applications</p>
+    <div className="home-back">
+      <Container fluid>
+      <div className="home">
+          <Row as='h4'>
+              <pre className='pre-head'>W E L C O M E  T O</pre>
+          </Row>
+          <Row as='h1' >
+              <pre className='home-head'>A P P L I C A T E</pre> 
+          </Row>
+          <Row as='h6'>
+            <pre className='home-text'>the new way of keeping track of your job applications</pre>
+          </Row>
+          <Row >
+          <pre className="home-btn">
+            <Button type='button' className="m-4 p-4" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={() => history('/login')}>
+              Start here 
+            </Button>
+            <Button type='button' className="m-4 p-4" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={demoHandler}>
+              Demo 
+            </Button>
+          </pre>
+            
+          
+          
+        </Row>
+        
       </div>
-      <div className="home-btn">
-        <Button type='button' className="mx-3 p-4" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={() => history('/login')}>
-        Start here 
-      </Button>
-      <Button type='button' className="mx-3 p-4" variant='outline-primary' style={{color: 'white', borderColor: 'white'}} onClick={demoHandler}>
-        Demo 
-      </Button>
-      </div>
-      
+      </Container>
     </div>
        
   );
