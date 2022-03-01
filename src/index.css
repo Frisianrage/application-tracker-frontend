@@ -72,7 +72,7 @@ code {
   .pre-head { font-size: 0.5rem; }
   .home-text {font-size: 0.25rem;}
   .home-head {font-size:1rem;} /*1rem = 16px*/
-  .home-btn {top: 35%}
+  .home-btn {top: 40%}
   .home-btn Button {
     font-size: 0.6rem;
     width: 9em;
@@ -84,7 +84,7 @@ code {
 @media screen and (min-width: 544px) {  
   .pre-head { font-size: 0.7rem; }
   .home-text {font-size: 0.5rem;}
-  .home-btn {top: 35%}
+  .home-btn {top: 45%}
   .home-btn Button {
     font-size: 0.6rem;
     width: 9em;
@@ -99,14 +99,14 @@ code {
   .pre-head { font-size: 1.1rem; }
   .home-text {font-size: 0.8rem;}
   .home-head {font-size:2.5rem;} /*1rem = 16px*/
-  .home-btn {top: 40%}
+  .home-btn {top: 50%}
 }
  
 /* Large devices (desktops, 992px and up) */
 @media screen and (min-width: 992px) { 
   .pre-head { font-size: 1.4rem; }
   .home-text {font-size: 1rem;}
-  .home-btn {top: 45%}
+  .home-btn {top: 55%}
   .home-btn Button {
     font-size: 0.8rem;
     width: 12em;
@@ -121,5 +121,5 @@ code {
   .pre-head { font-size: 1.5rem; }
   .home-text {font-size: 1.2rem;}
   .home-head {font-size:5rem;} /*1rem = 16px*/ 
-  .home-btn {top: 50%} 
+  .home-btn {top: 55%} 
 }
