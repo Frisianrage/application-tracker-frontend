@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import { AuthContext } from '../context/auth'
-import { Button, Container, Row, Col } from 'react-bootstrap'
+import { Button, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 function HomeScreen() {
