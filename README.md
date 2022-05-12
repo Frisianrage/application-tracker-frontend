@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Applicate - the application tracker project
 
-[Link](https://applicate.netlify.app/) to the project
+[Link](https://applicate.netlify.app/) to the live project
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
