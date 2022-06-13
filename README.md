@@ -13,6 +13,10 @@
 
 Applicate is my own job application tracker built with React, NodeJs/Express and MongoDB. Right now as a MVP in _v 1.0 it provides basic features like authentication/authorization, dashboard, own profile, adding new applications and companys. At the same time I am still improving and adding new features and ideas. This repo contains the frontend of Applicate.
 
+### Screenshot
+
+![screenshot 1](public/thumbnail.jpg)
+
 
 ## Technologies
 
