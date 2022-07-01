@@ -7,7 +7,6 @@
 * [Technologies](#technologies)
 * [Backend](#backend)
 * [Setup](#setup)
-* [Available Scripts](#available-scripts)
 
 ## General Info
 
