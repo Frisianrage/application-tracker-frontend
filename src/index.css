@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
 }
 
 .wrapper {
@@ -18,13 +17,13 @@ code {
 }
 
 #mainModal {
-  min-width: 90%
+  min-width: 90%;
 }
 
 .pre-head {
   color: grey;
   text-align: center;
-  padding-left: 0
+  padding-left: 0;
 }
 
 .home-back {
@@ -35,15 +34,14 @@ code {
 .home {
   height: 80vh;
   text-align: center;
-  padding-top: 8rem
+  padding-top: 8rem;
 }
 
-.home-head{
+.home-head {
   width: 10em;
-  font-size: 5rem; 
+  font-size: 5rem;
   color: white;
 }
-
 
 .home-text {
   color: white;
@@ -56,69 +54,92 @@ code {
   width: 60em;
   justify-content: center;
   margin: 0 auto;
-  top: 60%;
 }
 
 .home-btn Button {
   font-size: 0.8rem;
-  width: 12em
+  width: 12em;
 }
-
 
 /* Small devices (landscape phones, 544px and up) */
 
-@media screen and (min-width: 360px) {  
-  .pre-head { font-size: 0.7rem; }
-  .home-text {font-size: 0.4rem;}
-  .home-head {font-size:1.6rem;} /*1rem = 16px*/
-  .home-btn {top: 45%}
+@media screen and (min-width: 320px) {
+  .pre-head {
+    font-size: 0.7rem;
+  }
+  .home-text {
+    font-size: 0.4rem;
+  }
+  .home-head {
+    font-size: 1.6rem;
+  } /*1rem = 16px*/
   .home-btn Button {
     font-size: 0.6rem;
     width: 9em;
     padding: 0.5rem !important;
-    margin: 0.5rem !important
+    margin: 0.5rem !important;
   }
 }
 
-@media screen and (min-width: 544px) {  
-  .pre-head { font-size: 0.8rem; }
-  .home-text {font-size: 0.5rem;}
-  .home-btn {top: 45%}
+@media screen and (min-width: 544px) {
+  .pre-head {
+    font-size: 0.8rem;
+  }
+  .home-text {
+    font-size: 0.5rem;
+  }
   .home-btn Button {
     font-size: 0.6rem;
     width: 9em;
     padding: 0.5rem !important;
-    margin: 0.5rem !important
+    margin: 0.5rem !important;
   }
-  .home-head {font-size:1.8rem;} /*1rem = 16px*/
+  .home-head {
+    font-size: 1.8rem;
+  } /*1rem = 16px*/
 }
- 
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media screen and (min-width: 740px) {  
-  .pre-head { font-size: 1.1rem; }
-  .home-text {font-size: 0.8rem;}
-  .home-head {font-size:2.5rem;} /*1rem = 16px*/
-  .home-btn {top: 50%}
+@media screen and (min-width: 740px) {
+  .pre-head {
+    font-size: 1.1rem;
+  }
+  .home-text {
+    font-size: 0.8rem;
+  }
+  .home-head {
+    font-size: 2.5rem;
+  } /*1rem = 16px*/
 }
- 
+
 /* Large devices (desktops, 992px and up) */
-@media screen and (min-width: 992px) { 
-  .pre-head { font-size: 1.4rem; }
-  .home-text {font-size: 1rem;}
-  .home-btn {top: 55%}
+@media screen and (min-width: 992px) {
+  .pre-head {
+    font-size: 1.4rem;
+  }
+  .home-text {
+    font-size: 1rem;
+  }
   .home-btn Button {
     font-size: 0.8rem;
     width: 12em;
     padding: 1.5rem !important;
-    margin: 1.5rem !important
-  } 
-  .home-head {font-size:3.5rem;} /*1rem = 16px*/
+    margin: 1.5rem !important;
+  }
+  .home-head {
+    font-size: 3.5rem;
+  } /*1rem = 16px*/
 }
- 
+
 /* Extra large devices (large desktops, 1200px and up) */
-@media screen and (min-width: 1200px) {  
-  .pre-head { font-size: 1.5rem; }
-  .home-text {font-size: 1.2rem;}
-  .home-head {font-size:5rem;} /*1rem = 16px*/ 
-  .home-btn {top: 55%} 
+@media screen and (min-width: 1200px) {
+  .pre-head {
+    font-size: 1.5rem;
+  }
+  .home-text {
+    font-size: 1.2rem;
+  }
+  .home-head {
+    font-size: 5rem;
+  } /*1rem = 16px*/
 }
