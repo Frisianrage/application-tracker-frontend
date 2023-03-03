@@ -31,6 +31,7 @@ const LoginScreen = () => {
 
   return (
     <Modal
+      onHide={onHide}
       show={showModal}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
