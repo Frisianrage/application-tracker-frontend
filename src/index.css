@@ -63,7 +63,7 @@ code {
 
 /* Small devices (landscape phones, 544px and up) */
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 320px) and (max-width: 544px) {
   .pre-head {
     font-size: 0.7rem;
   }
@@ -78,6 +78,14 @@ code {
     width: 9em;
     padding: 0.5rem !important;
     margin: 0.5rem !important;
+  }
+
+  .table-sm td {
+    font-size: 0.55rem;
+  }
+
+  .table-sm th {
+    font-size: 0.65rem;
   }
 }
 
@@ -110,6 +118,10 @@ code {
   .home-head {
     font-size: 2.5rem;
   } /*1rem = 16px*/
+
+  .table-sm td {
+    font-size: 1rem;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
