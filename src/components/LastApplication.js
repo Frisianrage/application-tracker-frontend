@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import moment from 'moment';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Container, Table, Row, Col } from 'react-bootstrap';
 
@@ -73,10 +72,3 @@ function LastApplication() {
 }
 
 export default LastApplication;
-
-/*<td>
-{moment(userData.applications[0].createdAt).format(
-  'MM/DD/YY'
-)}
-</td>
-*/

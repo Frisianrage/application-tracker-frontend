@@ -23,7 +23,7 @@ function DashboardScreen() {
           </h2>
         </Col>
       </Row>
-      <Row className="p-2">
+      <Row className="px-2">
         <Col
           className="m-2"
           style={{
