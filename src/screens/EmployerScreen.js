@@ -1,128 +1,146 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { AuthContext } from '../context/auth'
-import axios from 'axios'
-import moment from 'moment'
-import { useNavigate } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Container, Table, Button, Row, Col } from 'react-bootstrap'
-import NewEmployer from '../components/NewEmployer'
+import React, { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../context/auth';
+import axios from 'axios';
+import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Container, Table, Button, Row, Col } from 'react-bootstrap';
+import NewEmployer from '../components/NewEmployer';
 
 const EmployerScreen = () => {
-  const [employerData, setEmployerData] = useState('')
-  const [showModal, setShowModal] = useState(false)
-  const [isLoading, setIsLoading] = useState('false')
+  const [employerData, setEmployerData] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState('false');
 
-  const history = useNavigate()
+  const history = useNavigate();
 
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
-  const token = localStorage.getItem('jwtToken')
-  if(!token) {
-      history('/')
+  const token = localStorage.getItem('jwtToken');
+  if (!token) {
+    history('/');
   }
 
   const deletHandler = async (id) => {
-    if(window.confirm('Are you sure you want to delete this Employer?')){
-      if(user && user.email === process.env.REACT_APP_DEMO_MAIL){
-        window.alert('This employer gets deleted here! This is just a demo! No new emlpoyer deleted!')
+    if (window.confirm('Are you sure you want to delete this Employer?')) {
+      if (user && user.email === process.env.REACT_APP_DEMO_MAIL) {
+        window.alert(
+          'This employer gets deleted here! This is just a demo! No new emlpoyer deleted!'
+        );
       } else {
         const deleteEmpl = await axios.delete(`/api/employers/profile/${id}`, {
           baseURL: process.env.REACT_APP_BASEURL,
           headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}` 
-          }
-        })
-        if(deleteEmpl){
-        setIsLoading(true)
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (deleteEmpl) {
+          setIsLoading(true);
         }
-      } 
+      }
     }
-  }
+  };
 
   useEffect(() => {
     const getEmployers = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
 
       try {
-        const {data} = await axios.get('/api/employers', {
+        const { data } = await axios.get('/api/employers', {
           baseURL: process.env.REACT_APP_BASEURL,
           headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}` 
-          }
-        })
-    
-        if(data) {
-          setEmployerData(data)
-        } 
-      } catch (error) {
-        console.log(error)
-      }
-    }
-      getEmployers()
-      setIsLoading(false)
-  }, [showModal, isLoading, token])
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-    
+        if (data) {
+          setEmployerData(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getEmployers();
+    setIsLoading(false);
+  }, [showModal, isLoading, token]);
+
   return (
     <>
       <NewEmployer showModal={showModal} setShowModal={setShowModal} />
       <Container>
-        <Row className="align-items-center">
+        <Row className="align-items-center my-3">
           <Col>
-              <h2><u>Employers</u></h2>
+            <h2>
+              <u>Employers</u>
+            </h2>
           </Col>
-          <Col className='text-right justify-content-end'>
-              <Button className='my-3' onClick={() => {setShowModal(true)}}>
-                  <i className='fas fa-plus' /> New Employer
-              </Button>
+          <Col
+            className="text-right justify-content-end"
+            style={{ display: 'flex' }}
+          >
+            <Button
+              className="my-3 btn btn-block"
+              onClick={() => {
+                setShowModal(true);
+              }}
+            >
+              <i className="fas fa-plus" /> New Employer
+            </Button>
           </Col>
         </Row>
-          <Table striped bordered hover responsive className='table-sm'>
-            <thead>
+        <Table striped bordered hover responsive="sm" className="table-sm">
+          <thead className="employer-thead">
+            <tr>
+              <th>COMPANY</th>
+              <th>LOCATION</th>
+              <th>JOBS</th>
+              <th>CREATED</th>
+              <th style={{ minWidth: '4rem' }}></th>
+            </tr>
+          </thead>
+          <tbody>
+            {employerData && employerData.employers ? (
+              employerData.employers.map((employer) => (
+                <tr key={employer._id}>
+                  <td>{employer.companyname}</td>
+                  <td>
+                    {employer.location.city} / {employer.location.state} (
+                    {employer.location.country})
+                  </td>
+                  <td>{employer.applicationCount}</td>
+                  <td>{moment(employer.createdAt).format('MM/DD/YY')}</td>
+                  <td>
+                    <div className="text-center">
+                      <LinkContainer
+                        to={`/employers/profile/${employer._id}`}
+                        style={{ cursor: 'Pointer' }}
+                      >
+                        <span>
+                          <i className="fas fa-edit" />
+                        </span>
+                      </LinkContainer>
+                      <span
+                        style={{ cursor: 'Pointer', paddingLeft: '1rem' }}
+                        onClick={() => deletHandler(employer._id)}
+                      >
+                        <i className="fas fa-trash" />
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
-                <th>COMPANY</th>
-                <th>CITY</th>
-                <th>STATE</th>
-                <th>COUNTRY</th>
-                <th>APPLICATIONS</th>
-                <th>CREATED AT</th>
-                <th></th>
+                <td>NO EMPLOYERS FOUND!</td>
               </tr>
-            </thead>
-            <tbody>
-              {employerData && employerData.employers ? (
-                employerData.employers.map(employer => (
-                  <tr key={employer._id}>
-                      <td>{employer.companyname}</td>
-                      <td>{employer.location.city}</td>
-                      <td>{employer.location.state}</td>
-                      <td>{employer.location.country}</td>
-                      <td>{employer.applicationCount}</td>
-                      <td>{moment(employer.createdAt).format('MM/DD/YY')}</td>
-                      <td>
-                        <LinkContainer to={`/employers/profile/${employer._id}`}>
-                          <Button variant='light' className='btn-sm'>
-                            <i className='fas fa-edit' />
-                          </Button>
-                        </LinkContainer>
-                        <Button variant='danger' className='btn-sm' onClick={() => deletHandler(employer._id)}>
-                          <i className='fas fa-trash' />
-                        </Button>
-                      </td>
-                  </tr>
-                ))
-                ) : (
-                <tr>
-                  <td>NO EMPLOYERS FOUND!</td>
-                </tr> 
-              )}
-            </tbody>
-          </Table>
+            )}
+          </tbody>
+        </Table>
       </Container>
-    </>   
-  )
-}
+    </>
+  );
+};
 
-export default EmployerScreen
+export default EmployerScreen;
